@@ -16,6 +16,7 @@ public class MAILUNIT {
         int i =1;
         MailBox box = new MailBox();
         
+        //maken van 10 Emails, de emails printen en toevoegen aan de mailbox
         while(i<10){
             Email mailtje = new Email("Jou", "Mij");
             
@@ -24,6 +25,8 @@ public class MAILUNIT {
             System.out.println(mailtje.getMail());
             i++;
         }
-        System.out.println(box.getMessage(4).getMail());
+        //selecteren van mail uit dse mailbox op basis van index nummer 'index'
+        int index = 4;
+        System.out.println(box.getMessage(index).getMail());
     }
 }
