@@ -3,6 +3,7 @@
 //   Maze_Search.java          In Text          Application
 //
 //   Authors:  Lewis and Loftus
+//   Author:  Chris Ros
 //
 //   Classes:  Maze_Search
 //             Maze
