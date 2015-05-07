@@ -15,14 +15,16 @@ import java.util.ArrayList;
 public class MailBox {
     ArrayList<Email> myArray = new ArrayList<Email>();
     
-    
+    //toevoegen van bericht aan arraylist
     public void addMessage(Email M){
         myArray.add(M);
     }
+    //ophalen van bericht uit arraylist op basis van index i
     public Email getMessage(int i)
     {
         return myArray.get(i);
     }
+    //verwijderen van bericht uit arraylist op basis van index i 
     public void deleteMessage(int i){
         myArray.remove(i);
     }

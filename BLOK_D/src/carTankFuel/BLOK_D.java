@@ -20,7 +20,11 @@ public class BLOK_D {
         Fuel benzine = new Fuel("benzine", 1.50);
         //to return the current fuel level, and addGas, to tank up. Sample usage:
         Car myHybrid = new Car(benzine, 20);     // 20 km/liter
+        System.out.println(myHybrid.getGasLevel()); // Print fuel remaining
+        System.out.println(myHybrid.getValueOfGasTank()); // Print value of fuel remaining
         myHybrid.addGas(20);            // Tank 20 liter
+        System.out.println(myHybrid.getGasLevel()); // Print fuel remaining
+        System.out.println(myHybrid.getValueOfGasTank()); // Print value of fuel remaining
         myHybrid.drive(100);            // Drive 100 miles
         System.out.println(myHybrid.getGasLevel()); // Print fuel remaining
         System.out.println(myHybrid.getValueOfGasTank()); // Print value of fuel remaining

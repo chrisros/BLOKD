@@ -22,11 +22,13 @@ public class MAILUNIT {
             
             mailtje.append("Dit is een bericht. NR: "+Integer.toString(i));
             box.addMessage(mailtje);
-            System.out.println(mailtje.getMail());
+            System.out.println(mailtje);
             i++;
         }
         //selecteren van mail uit dse mailbox op basis van index nummer 'index'
         int index = 4;
-        System.out.println(box.getMessage(index).getMail());
+        System.out.println(box.getMessage(index));
+        box.deleteMessage(4);
+        System.out.println(box.getMessage(index));
     }
 }

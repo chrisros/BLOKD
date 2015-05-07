@@ -23,10 +23,11 @@ public class Email {
     }
     //voor het toevoegen van een bericht
     public void append(String M){
-        this.message=this.message+M+"\n";
+        this.message += M + "\n";
     }
     //returned een mail met afzender en ontvanger
-    public String getMail(){
+    @Override
+    public String toString(){
         return "FROM: "+this.sender+"\nTO: "+this.reciepant+"\n \n"+this.message;
     }
 }

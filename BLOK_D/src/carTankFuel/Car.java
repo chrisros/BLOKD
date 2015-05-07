@@ -27,7 +27,7 @@ public class Car {
     }
     //laat de auto een afstand in kilometers rijden
     public void drive (double afstand){
-        this.tankNiveau = this.tankNiveau - (afstand/this.kmPerLiter);
+        this.tankNiveau -= afstand/kmPerLiter;
     }
     //returned hoeveelheid brandstof als double
     public String getGasLevel(){
@@ -35,6 +35,6 @@ public class Car {
     }
     //krijgt waarde van gastank op basis van waarde van het object van de brandstof in de auto
     public double getValueOfGasTank(){
-        return brandstofType.getGasPrice()*tankNiveau;
+        return brandstofType.getGasPrice() * tankNiveau;
     }
 }
