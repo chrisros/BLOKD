@@ -12,8 +12,9 @@ package paintSquares;
  */
 public class PAINTSQUARES {
     public static void main (String[] args) {
-        Frame frame = new Frame();
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        
+        DrawFrame frame = new DrawFrame("Een Frame", 1000, 800);
+        ClickListener listener = new ClickListener(frame);
+        frame.setListener(listener);
     }
 }
