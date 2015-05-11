@@ -29,23 +29,18 @@ public DrawFrame(String title, int width, int height){
     addComponents();
     setSize(width, height);
     setTitle(title);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
-     
-    
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
 }
 //voegt alle componenten aan een panel 
 private void addComponents(){
     createTextfield(5);
     createButton();
-    JPanel panel = new JPanel();
-    
+    JPanel panel = new JPanel();    
     panel.add(label);
     panel.add(inputField);
     panel.add(button);
     panel.add(outputField);
-    add(panel);
-    
+    add(panel);   
     
 }
 

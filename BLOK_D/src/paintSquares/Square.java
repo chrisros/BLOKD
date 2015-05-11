@@ -32,6 +32,8 @@ ArrayList<Color> colours = new  ArrayList<>();
 public Square(int amount)
     {
     i = amount;
+    
+    //add colours
     colours.add(Color.red);
     colours.add(Color.blue);
     colours.add(Color.ORANGE);

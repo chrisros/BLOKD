@@ -18,7 +18,7 @@ public class Voedsel extends Product {
         setId(Id);
         setPrijs(Prijs);
         setOmschrijving(Omschrijving);
-        setDagenLevertijd(2);
+        setDagenLevertijd(1);
         date = Date;   
     }
     

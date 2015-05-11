@@ -42,5 +42,6 @@ public class Kleding extends Product {
     public String toString(){
         return "----------\nId: "+getId()+"\nPrijs: "+getPrijs()+"\nOmschrijving: "+getOmschrijving()+"\n Levertijd: "+getLevertijd()+" Dagen \n Maat: "+ maat+"\n----------";
     }
+
     
 }

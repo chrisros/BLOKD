@@ -21,18 +21,18 @@ public class Magazijn {
         magazijn.add(product);
     }
     
-    public Product ophalen(int ID){
-        int c = 0;
-        Product opgevraagd = null;
-        Iterator<Product> iter = magazijn.iterator();
-        while(iter.hasNext()){
-            Product prod = iter.next();
-            
-            if(prod.getId()==ID){
-                opgevraagd = prod;
+            public Product ophalen(int ID){
+
+                Product opgevraagd = null;
+                Iterator<Product> iter = magazijn.iterator();
+                while(iter.hasNext()){
+                    Product prod = iter.next();
+
+                    if(prod.getId()==ID){
+                        opgevraagd = prod;
+                    }
+                } 
+                return opgevraagd;
             }
-        } 
-        return opgevraagd;
-    }
     
 }

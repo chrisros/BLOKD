@@ -10,7 +10,7 @@ package MagazijnSysteem;
  *
  * @author Chris
  */
-public class Product {
+public abstract class Product {
     private int id;
     private double prijs;
     private String omschrijving;
@@ -19,6 +19,7 @@ public class Product {
     public int getId(){
         return id;
     }
+    
     public double getPrijs(){
         return prijs;
     }
@@ -40,7 +41,4 @@ public class Product {
     public void setDagenLevertijd(int x){
          dagenLevertijd=x;
     }
-                
-
-    
 }

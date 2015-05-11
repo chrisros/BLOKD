@@ -43,18 +43,20 @@ public class MAGAZIJNSYSTEEM {
         
         //uitprinten van alle producten
         
-//        System.out.println(shirt1);
-//        System.out.println(shirt2);
-//        System.out.println(shirt3);
-//        System.out.println(drank1);
-//        System.out.println(drank2);
-//        System.out.println(drank3);
-//        System.out.println(voedsel1);
-//        System.out.println(voedsel2);
-//        System.out.println(voedsel3);
+        System.out.println(shirt1);
+        System.out.println(shirt2);
+        System.out.println(shirt3);
+        System.out.println(drank1);
+        System.out.println(drank2);
+        System.out.println(drank3);
+        System.out.println(voedsel1);
+        System.out.println(voedsel2);
+        System.out.println(voedsel3);
         
         //voor het ophalen uit de arraylist met een specifiek ID
         System.out.println(denHaag.ophalen(404));
+        System.out.println("--");
+        System.out.println(denHaag.ophalen(403));
         
     
 
