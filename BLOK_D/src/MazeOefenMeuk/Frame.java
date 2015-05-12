@@ -66,12 +66,12 @@ public class Frame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //button clicked > teken de maze:
-        doolhof.paintMaze();
+        doolhof.paintMaze(panel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //button clicked > teken de oplossing:
-        opgelost.paintMaze();
+        opgelost.paintMaze(panel);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

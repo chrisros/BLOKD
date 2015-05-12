@@ -6,12 +6,7 @@
 
 package MazeOefenMeuk;
 
-import java.awt.Graphics;
-import java.util.Random;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import paintSquares.DrawFrame;
-import paintSquares.Square;
+import javax.swing.JPanel;
 
 /**
  *
@@ -22,6 +17,7 @@ public class Maze {
    protected final int startX;
    protected final int startY;
    protected final int[][] grid;
+   protected boolean solution = false;
    
    public Maze(int[][] maze, int x, int y){
        startX = x;
@@ -43,9 +39,18 @@ public class Maze {
       System.out.println();
     }
     
-    public void paintMaze()
+    public void paintMaze(JPanel panel)
     {
-        
+        panel.removeAll();
+        for (int row=0; row < grid.length; row++) 
+        {
+            for (int column=0; column < grid[row].length; column++)
+            {
+                Block blok = new Block(grid[row][column], solution);
+                panel.add(blok);            
+            }          
+        }       
+        panel.updateUI();
     } 
     
    public int[][] getGrid(){return grid;}

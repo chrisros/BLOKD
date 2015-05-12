@@ -6,6 +6,7 @@
 
 package MazeOefenMeuk;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 
@@ -15,10 +16,21 @@ import javax.swing.JComponent;
  */
 public class Block extends JComponent{
     
+    Color color;
+    
+    public Block(int c, boolean s){
+        
+        if(c==0){color=Color.black;}
+        else if(c==7&&s){color=Color.green;}
+        else{color=Color.lightGray;}
+    }
+    
     @Override
     public void paintComponent(Graphics g){
         //maakt een component met een bepaalde hoeveelheid squares
-        g.fillRect(10, 10, 10, 10);
+        g.setColor(color);
+        g.fillRect(0, 0, 100, 100);
+        
         setVisible(true);
         
     }

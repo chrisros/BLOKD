@@ -18,6 +18,7 @@ public class Maze_Solved extends Maze{
         super(maze, x, y);
         steps = count;
         done = solved;
+        solution = true;
     }
     
         
@@ -36,12 +37,6 @@ public class Maze_Solved extends Maze{
         System.out.println();
         System.out.println("Amount of steps: "+steps);  
     }
-    
-    @Override
-    public void paintMaze()
-    {
-        System.out.println("Laat oplossing zien");  
-    } 
-        
+      
     public boolean isDone(){return done;}
 }

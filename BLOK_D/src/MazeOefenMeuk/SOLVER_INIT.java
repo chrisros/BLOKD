@@ -39,8 +39,8 @@ public class SOLVER_INIT {
         frame.setVisible(true);
         frame.setTitle("een mooi frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Block blok = new Block();
-        frame.addBlock(blok);
+        //Block blok = new Block();
+        //frame.addBlock(blok);
         
     //================================================================//    
 
