@@ -39,4 +39,5 @@ public class Maze_Solved extends Maze{
     }
       
     public boolean isDone(){return done;}
+    public int getSteps(){return steps;}
 }

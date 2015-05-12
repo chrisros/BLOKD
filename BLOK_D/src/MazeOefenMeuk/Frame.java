@@ -19,9 +19,8 @@ public class Frame extends javax.swing.JFrame {
         this.doolhof = doolhof;
         this.opgelost = opgelost;
     }
-    public void addBlock(Block B){
-        
-    }
+    
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,6 +35,7 @@ public class Frame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        feedback = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +58,9 @@ public class Frame extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton2);
+
+        feedback.setMinimumSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(feedback);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.SOUTH);
 
@@ -110,9 +113,14 @@ public class Frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel feedback;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
+
+  public void setFeedback(String text){
+        feedback.setText(text);
+    }
 }

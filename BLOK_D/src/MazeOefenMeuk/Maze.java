@@ -6,6 +6,7 @@
 
 package MazeOefenMeuk;
 
+import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -41,15 +42,20 @@ public class Maze {
     
     public void paintMaze(JPanel panel)
     {
+        //panel leegmaken
         panel.removeAll();
+        
         for (int row=0; row < grid.length; row++) 
         {
             for (int column=0; column < grid[row].length; column++)
             {
+                //if(row==startY&&column==startX){grid[row][column]=2;}
                 Block blok = new Block(grid[row][column], solution);
                 panel.add(blok);            
             }          
-        }       
+        }
+        //panel met nieuwe UI inladen
+        panel.setBackground(Color.BLACK);
         panel.updateUI();
     } 
     

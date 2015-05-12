@@ -16,23 +16,23 @@ public class Solver {
     private final int column;
     private final int endX;
     private final int endY;
-    private int[][] grid;
+    private int[][] grid2;
     private int steps;
     
     public Solver(Maze Maze)
     {
-        grid    = Maze.getGrid();
+        grid2    = Maze.getGrid();
         column  = Maze.getX();
         row     = Maze.getY();
-        endX    =grid[0].length-2; 
-        endY    =grid.length-2; 
+        endX    =grid2[0].length-2; 
+        endY    =grid2.length-2; 
         steps   = -1;
     }
         //Start de solve actie 
        public Maze_Solved start()
        {
            boolean  solved = solve(row, column);         
-           Maze_Solved doolhofOpgelost = new Maze_Solved(grid, column, row, steps, solved);           
+           Maze_Solved doolhofOpgelost = new Maze_Solved(grid2, column, row, steps, solved);           
            return doolhofOpgelost;
          
        }
@@ -43,7 +43,7 @@ public class Solver {
             
             if (valid (row, column)) 
             {
-                grid[row][column] = 3;                        // laat 'breadcrumb'achter (cell is geprobeerd)
+                grid2[row][column] = 3;                        // laat 'breadcrumb'achter (cell is geprobeerd)
 
                 if (row == endY && column == endX)
                 {
@@ -60,7 +60,7 @@ public class Solver {
                       done = solve (row, column-1);         // left
                 }
                 if (done)                                   // markeer als'final path'
-                   grid[row][column] = 7;
+                   grid2[row][column] = 7;
                    steps++;
           }
            
@@ -71,11 +71,11 @@ public class Solver {
       boolean result = false;
  
         // check if cell is in the bounds of the matrix
-        if (row >= 0 && row < grid.length &&
-            column >= 0 && column < grid[0].length)
+        if (row >= 0 && row < grid2.length &&
+            column >= 0 && column < grid2[0].length)
 
         //  check if cell is not blocked and not previously tried
-        if (grid[row][column] == 1)
+        if (grid2[row][column] == 1||grid2[row][column] == 2||grid2[row][column] == 4)
            result = true;
 
       return result;
