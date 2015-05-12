@@ -10,39 +10,33 @@ package MazeOefenMeuk;
  *
  * @author chris
  */
-public class Grid {
+public class Maze {
           
-   private final int startX;
-   private final int startY;
-   private int steps;
-   private int[][] grid;
+   protected final int startX;
+   protected final int startY;
+   protected final int[][] grid;
    
-   public Grid(int[][] maze, int x, int y){
+   public Maze(int[][] maze, int x, int y){
        startX = x;
        startY = y;
-       steps = 0;
-       grid=maze;
+       grid=maze;  
    }
    
     public void printMaze() {
    
       System.out.println();
 
-      for (int row=0; row < grid.length; row++) {
+      for (int row=0; row < grid.length; row++) 
+      {
          for (int column=0; column < grid[row].length; column++)
             System.out.print (grid[row][column]);
          System.out.println();
       }
 
       System.out.println();
-       System.out.println("Amount of steps: "+steps);  
    }
     
-    public int[][] getGrid()
-    {
-        return grid;
-    }
-   
+   public int[][] getGrid(){return grid;}
    public int getX(){return startX;}
    public int getY(){return startY;}
 }
