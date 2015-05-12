@@ -8,7 +8,10 @@ package MazeOefenMeuk;
 
 import java.awt.Graphics;
 import java.util.Random;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import paintSquares.DrawFrame;
+import paintSquares.Square;
 
 /**
  *
@@ -42,12 +45,7 @@ public class Maze {
     
     public void paintMaze()
     {
-        Frame frame = new Frame();
-        frame.setVisible(true);
-        frame.setTitle("een mooi frame");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-
-
+        
     } 
     
    public int[][] getGrid(){return grid;}

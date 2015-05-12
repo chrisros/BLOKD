@@ -12,11 +12,15 @@ package MazeOefenMeuk;
  */
 public class Frame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Frame
-     */
-    public Frame() {
+    Maze doolhof;
+    Maze_Solved opgelost;
+    public Frame(Maze doolhof, Maze_Solved opgelost ) {
         initComponents();
+        this.doolhof = doolhof;
+        this.opgelost = opgelost;
+    }
+    public void addBlock(Block B){
+        
     }
 
     /**
@@ -28,16 +32,16 @@ public class Frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 0));
-        jPanel1.setLayout(new java.awt.GridLayout(7, 6));
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        panel.setBackground(new java.awt.Color(0, 255, 0));
+        panel.setLayout(new java.awt.GridLayout(7, 6));
+        getContentPane().add(panel, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("Show Maze");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -48,6 +52,11 @@ public class Frame extends javax.swing.JFrame {
         jPanel2.add(jButton1);
 
         jButton2.setText("Solve Maze");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.SOUTH);
@@ -56,8 +65,14 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        //button clicked > teken de maze:
+        doolhof.paintMaze();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //button clicked > teken de oplossing:
+        opgelost.paintMaze();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,7 +104,7 @@ public class Frame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frame().setVisible(true);
+                //new Frame().setVisible(true);
             }
         });
     }
@@ -97,7 +112,7 @@ public class Frame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

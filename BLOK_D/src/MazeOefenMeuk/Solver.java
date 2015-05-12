@@ -29,15 +29,12 @@ public class Solver {
         steps   = -1;
     }
         //Start de solve actie 
-       public boolean start()
+       public Maze_Solved start()
        {
-           boolean solved = solve(row, column);         
-           Maze doolhofOpgelost = new Maze_Solved(grid, column, row, steps);
-           doolhofOpgelost.printMaze();
-           doolhofOpgelost.paintMaze();
-           
-           return solved;
-           
+           boolean  solved = solve(row, column);         
+           Maze_Solved doolhofOpgelost = new Maze_Solved(grid, column, row, steps, solved);           
+           return doolhofOpgelost;
+         
        }
     
        private boolean solve (int row, int column) 

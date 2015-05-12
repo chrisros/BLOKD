@@ -1,6 +1,9 @@
 package MazeOefenMeuk;
 
-public class Maze_Search {
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class SOLVER_INIT {
 
 
    public static void main (String[] args) {
@@ -19,14 +22,28 @@ public class Maze_Search {
 
     Maze doolhof = new Maze(grid, x, y);
     doolhof.printMaze();
-    //================================================================//
     
-    Solver solver = new Solver(doolhof);      
-      if (solver.start())
+    Solver solver = new Solver(doolhof);
+    Maze_Solved opgelost = solver.start();
+    opgelost.printMaze();
+    if(opgelost.isDone())
+    {
          System.out.println ("Maze solved!");
-      
-      else
-         System.out.println ("No solution.");
+    } else{
+       System.out.println ("No solution."); 
+    }
+         
+    
+    //================================================================//
+    Frame frame = new Frame(doolhof, opgelost);
+        frame.setVisible(true);
+        frame.setTitle("een mooi frame");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Block blok = new Block();
+        frame.addBlock(blok);
+        
+    //================================================================//    
+
 
      
    }
