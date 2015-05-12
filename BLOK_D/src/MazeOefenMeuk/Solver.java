@@ -33,7 +33,9 @@ public class Solver {
        {
            boolean solved = solve(row, column);         
            Maze doolhofOpgelost = new Maze_Solved(grid, column, row, steps);
-           doolhofOpgelost.printMaze(); 
+           doolhofOpgelost.printMaze();
+           doolhofOpgelost.paintMaze();
+           
            return solved;
            
        }

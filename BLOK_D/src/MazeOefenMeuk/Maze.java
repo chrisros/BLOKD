@@ -6,6 +6,10 @@
 
 package MazeOefenMeuk;
 
+import java.awt.Graphics;
+import java.util.Random;
+import javax.swing.JFrame;
+
 /**
  *
  * @author chris
@@ -20,7 +24,7 @@ public class Maze {
        startX = x;
        startY = y;
        grid=maze;  
-   }
+    }
    
     public void printMaze() {
    
@@ -34,7 +38,17 @@ public class Maze {
       }
 
       System.out.println();
-   }
+    }
+    
+    public void paintMaze()
+    {
+        Frame frame = new Frame();
+        frame.setVisible(true);
+        frame.setTitle("een mooi frame");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+
+
+    } 
     
    public int[][] getGrid(){return grid;}
    public int getX(){return startX;}

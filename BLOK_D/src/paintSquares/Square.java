@@ -68,7 +68,7 @@ public Square(int amount)
             y = generator.nextInt(800) + 1;
             height = generator.nextInt(500) + 1;
             width = generator.nextInt(500) + 1;
-            g.fillRect(x, y, width, height);
+            g.fillRect(0, 0, 10, 10);
             
             j++;
         }
