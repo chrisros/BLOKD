@@ -5,14 +5,7 @@ import javax.swing.JFrame;
 public class SOLVER_INIT {
     static int x = 1;
     static int y = 1;
-    static final int[][] gridLevel =  {{0,0,0,0,0,0},
-                                                {0,2,1,1,1,0},
-                                                {0,0,1,0,1,0},       
-                                                {0,1,1,0,1,0},
-                                                {0,1,0,0,1,0},
-                                                {0,1,1,1,4,0}, 
-                                                {0,0,0,0,0,0}};  
-
+    static int blockSize = 100;
    public static void main (String[] args) {
 
    //================================================================//
@@ -20,8 +13,8 @@ public class SOLVER_INIT {
    //================================================================//
 
     
-    Maze doolhof = new Maze(gridLevel, x, y);
-    Maze doolhof2 = new Maze(gridLevel, x, y);
+    Maze doolhof = new Maze(x, y);
+    Maze doolhof2 = new Maze(x, y);
     Solver solver = new Solver(doolhof2);
     Maze_Solved opgelost = solver.start();
     
@@ -41,7 +34,7 @@ public class SOLVER_INIT {
         frame.setVisible(true);
         frame.setTitle("MazeSolver 9001");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize((gridLevel[0].length*100), (gridLevel.length*100));
+        frame.setSize(doolhof.getWidth()*blockSize, doolhof.getHeight()*blockSize);
         String feedback;
         if(opgelost.isDone())
         {

@@ -17,13 +17,18 @@ public class Maze {
           
    protected final int startX;
    protected final int startY;
-   protected final int[][] grid;
    protected boolean solution = false;
-   
-   public Maze(int[][] maze, int x, int y){
+   protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0},
+                            {0,2,1,1,1,0,1,1,1,1,1,0},
+                            {0,0,1,0,1,1,1,0,1,0,1,0},       
+                            {0,1,1,0,1,0,0,1,1,0,1,0},
+                            {0,1,0,0,1,0,0,1,0,0,1,0},
+                            {0,1,1,1,1,0,0,1,1,1,4,0}, 
+                            {0,0,0,0,0,0,0,0,0,0,0,0}};  
+
+   public Maze(int x, int y){
        startX = x;
        startY = y;
-       grid=maze;  
     }
    
     public void printMaze() {
@@ -59,7 +64,10 @@ public class Maze {
         panel.updateUI();
     } 
     
-   public int[][] getGrid(){return grid;}
+   public int[][] getGrid(){return grid;}   
    public int getX(){return startX;}
    public int getY(){return startY;}
+   public int getWidth(){return grid[0].length  ;}
+   public int getHeight(){return grid.length;}
+
 }
