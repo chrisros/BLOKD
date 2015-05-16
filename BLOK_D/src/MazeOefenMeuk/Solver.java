@@ -27,8 +27,8 @@ public class Solver {
     public Solver(Maze Maze, int recur)
     {
         grid    = Maze.getGrid();            //verkrijgen van doolhof
-        startX  = Maze.getStartX();          //verkrijgen van startpunt
-        startY  = Maze.getStartY();          //verkrijgen van startpunt
+        startX  = Maze.getPlayerX();          //verkrijgen van startpunt
+        startY  = Maze.getPlayerY();          //verkrijgen van startpunt
         endX    = Maze.getEndX();            //verkrijgen van startpunt
         endY    = Maze.getEndY();            //verkrijgen van startpunt
         order = recur;

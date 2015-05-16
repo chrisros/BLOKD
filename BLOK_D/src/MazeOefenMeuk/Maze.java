@@ -88,6 +88,8 @@ public class Maze {
    public int getEndY(){return endY;}
    public int getWidth(){return grid[0].length  ;}
    public int getHeight(){return grid.length;}
+   public int getPlayerX(){return playerX;}
+   public int getPlayerY(){return playerY;}
    public void setPanel(JPanel pan){panel = pan;}
    public void setPlayerX(int x){playerX = x;}
    public void setStartY(int y){playerY = y;}

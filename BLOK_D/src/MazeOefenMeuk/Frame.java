@@ -31,6 +31,7 @@ public class Frame extends javax.swing.JFrame {
         KeyListener checkKey = new GetKey(speler);
         panel.addKeyListener(checkKey);
         doolhof.setPanel(panel);
+        opgelost.setPanel(panel);
     }
     
   
@@ -142,7 +143,7 @@ public class Frame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //button clicked > teken de oplossing:
-        opgelost.paintMaze();
+        speler.verkrijgSnelsteRoute(panel);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
