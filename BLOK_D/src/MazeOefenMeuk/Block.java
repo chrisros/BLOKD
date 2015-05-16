@@ -19,13 +19,14 @@ public class Block extends JComponent{
     Color color;
     boolean walkable;
     
-    public Block(int c, boolean s){
+    public Block(int c, boolean s, boolean p){
         
         if(c==0){color=Color.black;walkable=false;}
         else if(c==7&&s){color=Color.green;walkable=true;}
         else if(c==2){color=Color.orange;walkable=true;}
         else if(c==4){color=Color.red;walkable=true;}
         else{color=Color.lightGray;walkable=false;}
+        if(p==true){color=Color.pink;}
     }
     
     @Override

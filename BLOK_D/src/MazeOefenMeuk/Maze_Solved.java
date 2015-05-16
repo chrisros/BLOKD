@@ -14,8 +14,10 @@ public class Maze_Solved extends Maze{
     
     private final int steps;
     private final boolean done;
+    
     public Maze_Solved(int[][] maze, int x, int y, int count, boolean solved) {
         super(x, y);
+        grid = maze;
         steps = count;
         done = solved;
         solution = true;

@@ -12,27 +12,34 @@ package MazeOefenMeuk;
  */
 
 public class Solver {
-    private final int row;
-    private final int column;
+    // waardes van de snelste route
+    private int[][] gridFast;
+    private int stepsFast;
+    
+    private final int startY;
+    private final int startX;
     private final int endX;
     private final int endY;
-    private int[][] grid2;
+    private int order;
+    private int[][] grid;
     private int steps;
-    
-    public Solver(Maze Maze)
+
+    public Solver(Maze Maze, int recur)
     {
-        grid2    = Maze.getGrid();
-        column  = Maze.getX();
-        row     = Maze.getY();
-        endX    =grid2[0].length-2; 
-        endY    =grid2.length-2; 
-        steps   = -1;
+        grid    = Maze.getGrid();            //verkrijgen van doolhof
+        startX  = Maze.getStartX();          //verkrijgen van startpunt
+        startY  = Maze.getStartY();          //verkrijgen van startpunt
+        endX    = Maze.getEndX();            //verkrijgen van startpunt
+        endY    = Maze.getEndY();            //verkrijgen van startpunt
+        order = recur;
+        steps   = -1;                        //varibele voor opslaan hoeveel stappen er zijn
     }
         //Start de solve actie 
        public Maze_Solved start()
        {
-           boolean  solved = solve(row, column);         
-           Maze_Solved doolhofOpgelost = new Maze_Solved(grid2, column, row, steps, solved);           
+          
+           boolean  solved = solve(startY, startX);         
+           Maze_Solved doolhofOpgelost = new Maze_Solved(grid, startX, startY, steps, solved);              
            return doolhofOpgelost;
          
        }
@@ -43,13 +50,13 @@ public class Solver {
             
             if (valid (row, column)) 
             {
-                grid2[row][column] = 3;                        // laat 'breadcrumb'achter (cell is geprobeerd)
+                grid[row][column] = 3;                        // laat 'breadcrumb'achter (cell is geprobeerd)
 
                 if (row == endY && column == endX)
                 {
                    done = true;                              // doolhoof opgelost (eindpunt bereikt)  
                 }
-                else 
+                else if(order == 1)
                 {
                    done = solve (row+1, column);             // down
                    if (!done)
@@ -58,9 +65,36 @@ public class Solver {
                       done = solve (row-1, column);          // up
                    if (!done)
                       done = solve (row, column-1);         // left
+                } else if(order == 2)
+                {
+                   done = solve (row, column+1);             // right
+                   if (!done)
+                      done = solve (row+1, column);          // down
+                   if (!done)
+                      done = solve (row-1, column);          // up
+                   if (!done)
+                      done = solve (row, column-1);         // left
+                } else if(order == 3)
+                {
+                   done = solve (row+1, column);             // down
+                   if (!done)
+                      done = solve (row, column+1);          // right
+                   if (!done)
+                      done = solve (row, column-1);          // left
+                   if (!done)
+                      done = solve (row-1, column);         // up
+                } else if(order == 4)
+                {
+                   done = solve (row, column+1);             // right
+                   if (!done)
+                      done = solve (row+1, column);          // down
+                   if (!done)
+                      done = solve (row, column-1);          // left
+                   if (!done)
+                      done = solve (row-1, column);         // up
                 }
                 if (done)                                   // markeer als'final path'
-                   grid2[row][column] = 7;
+                   grid[row][column] = 7;
                    steps++;
           }
            
@@ -71,14 +105,15 @@ public class Solver {
       boolean result = false;
  
         // check if cell is in the bounds of the matrix
-        if (row >= 0 && row < grid2.length &&
-            column >= 0 && column < grid2[0].length)
+        if (row >= 0 && row < grid.length &&
+            column >= 0 && column < grid[0].length)
 
         //  check if cell is not blocked and not previously tried
-        if (grid2[row][column] == 1||grid2[row][column] == 2||grid2[row][column] == 4)
+        if (grid[row][column] == 1||grid[row][column] == 2||grid[row][column] == 4)
            result = true;
 
       return result;
 
    }
+       
 }
