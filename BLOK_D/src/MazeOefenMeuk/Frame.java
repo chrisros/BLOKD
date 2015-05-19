@@ -7,6 +7,8 @@
 package MazeOefenMeuk;
 
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,7 +65,7 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
-        panel.setBackground(new java.awt.Color(0, 102, 0));
+        panel.setBackground(new java.awt.Color(248, 179, 50));
         panel.setFocusCycleRoot(true);
         panel.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -137,13 +139,21 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //button clicked > teken de maze:
-        doolhof.paintMaze();
+        try {
+            //button clicked > teken de maze:
+            doolhof.paintMaze();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Er is een kritische fout opgetreden, graag de palicatie opnieuw opstarten");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //button clicked > teken de oplossing:
-        speler.verkrijgSnelsteRoute(panel);
+        try {
+            //button clicked > teken de oplossing:
+            speler.verkrijgSnelsteRoute(panel);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Er is een kritische fout opgetreden, graag de palicatie opnieuw opstarten"); 
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed

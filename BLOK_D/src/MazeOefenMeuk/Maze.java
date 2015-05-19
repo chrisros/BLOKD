@@ -7,6 +7,11 @@
 package MazeOefenMeuk;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -14,21 +19,32 @@ import javax.swing.JPanel;
  * @author chris
  */
 public class Maze {
-   protected  JPanel panel; 
-   protected final int startX;
-   protected final int startY;
-   protected final int endX;
-   protected final int endY;
-   protected int playerX;
-   protected int playerY;
-   protected boolean solution = false;
-   protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0},
-                            {0,1,1,1,1,0,1,1,1,0,1,0},
-                            {0,0,1,0,1,1,1,0,1,0,1,0},       
-                            {0,1,1,0,1,0,0,1,1,0,1,0},
-                            {0,1,0,0,1,0,0,1,0,0,1,0},
-                            {0,1,1,1,1,1,1,1,1,1,1,0}, 
-                            {0,0,0,0,0,0,0,0,0,0,0,0}};  
+    
+    protected Color color;
+    boolean walkable;
+    protected BufferedImage wall;
+    protected BufferedImage pad;
+    protected BufferedImage solvedPad;
+    protected BufferedImage start;
+    protected BufferedImage finish;
+    protected BufferedImage held;
+    protected BufferedImage returnImage; 
+    
+    protected  JPanel panel; 
+    protected final int startX;
+    protected final int startY;
+    protected final int endX;
+    protected final int endY;
+    protected int playerX;
+    protected int playerY;
+    protected boolean solution = false;
+    protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0},
+                             {0,1,1,1,1,0,1,1,1,0,1,0},
+                             {0,0,1,0,1,1,1,0,1,0,1,0},       
+                             {0,1,1,0,1,0,0,1,1,0,1,0},
+                             {0,1,0,0,1,0,0,1,0,0,1,0},
+                             {0,1,1,1,1,1,1,1,1,1,1,0}, 
+                             {0,0,0,0,0,0,0,0,0,0,0,0}};  
 
    public Maze(int x, int y){
        startX = x;
@@ -37,6 +53,18 @@ public class Maze {
        playerY = y;
        endX = 10;
        endY = 5;
+       
+        try {
+            wall       = ImageIO.read(new File("src/images/wall.PNG"));
+            pad        = ImageIO.read(new File("src/images/pad.PNG"));
+            solvedPad  = ImageIO.read(new File("src/images/solvedPad.PNG"));
+            start      = ImageIO.read(new File("src/images/start.PNG"));
+            finish     = ImageIO.read(new File("src/images/finish.PNG"));
+            held       = ImageIO.read(new File("src/images/held.PNG")); 
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Niet alle grafische onderdelen konden geladen worden.");
+        }
+
     }
    
     public void printMaze() {
@@ -52,8 +80,8 @@ public class Maze {
 
       System.out.println();
     }
-    
-    public void paintMaze()
+        
+    public void paintMaze() throws IOException
     {
         //panel leegmaken
         panel.removeAll();
@@ -67,7 +95,23 @@ public class Maze {
                 if(row==endY&&column==endX){grid[row][column]=4;}
                 if(row==playerY&&column==playerX){player=true;}
                 
-                Block blok = new Block(grid[row][column], solution, player);
+                int c=grid[row][column];
+                
+                if     (c==0)           {returnImage=wall;      color=Color.black;      walkable=false;}
+                else if(c==7&&solution) {returnImage=solvedPad; color=Color.green;      walkable=true;}
+                else if(c==2)           {returnImage=start;     color=Color.orange;     walkable=true;}
+                else if(c==4)           {returnImage=finish;    color=Color.red;        walkable=true;}
+                else                    {returnImage=pad;       color=Color.lightGray;  walkable=false;}
+                
+                Block blok; 
+                if(player==true)   
+                { 
+                   color=Color.pink;
+                   blok = new HeldBlock(held, returnImage, color);          
+                }else
+                {
+                    blok = new Block(returnImage, color);
+                }
                 panel.add(blok);            
             }          
         }

@@ -6,6 +6,8 @@
 
 package MazeOefenMeuk;
 
+import java.io.IOException;
+
 /**
  *
  * @author chris
@@ -35,7 +37,7 @@ public class Solver {
         steps   = -1;                        //varibele voor opslaan hoeveel stappen er zijn
     }
         //Start de solve actie 
-       public Maze_Solved start()
+       public Maze_Solved start() throws IOException
        {
           
            boolean  solved = solve(startY, startX);         

@@ -1,5 +1,6 @@
 package MazeOefenMeuk;
 
+import java.io.IOException;
 import javax.swing.JPanel;
 
 
@@ -18,7 +19,7 @@ public class Speler{
         this.y = y;
         this.doolhof = doolhof;
     }
-    public void move(int key){
+    public void move(int key) throws IOException{
         int oldX = x;
         int oldY = y;
         if(key==4){x--; if(doolhof.getBlock(x, y)==0){x++;}}
@@ -39,7 +40,7 @@ public class Speler{
         }
     }
     
-    public void verkrijgSnelsteRoute(JPanel panel)
+    public void verkrijgSnelsteRoute(JPanel panel) throws IOException
     {
         int i = 1;
         Maze doolhof2 = new Maze(x, y);
