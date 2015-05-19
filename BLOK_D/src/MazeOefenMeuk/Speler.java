@@ -34,22 +34,22 @@ public class Speler{
            doolhof.setPlayerX(x);
            doolhof.setStartY(y);
            doolhof.paintMaze();
-           System.out.println(steps);
-           System.out.println(x+" "+y); 
+           //System.out.println(steps);
+           //System.out.println(x+" "+y); 
         }
     }
     
     public void verkrijgSnelsteRoute(JPanel panel)
     {
         int i = 1;
-        Solver solver = new Solver(doolhof, i);
+        Maze doolhof2 = new Maze(x, y);
+        Solver solver = new Solver(doolhof2, i);
         Maze_Solved opgelost = solver.start();
         opgelost.setPanel(panel);
         steps = opgelost.getSteps();
         while (i<4)
         {
             i++;
-            Maze doolhof2 = new Maze(x, y);
             Solver solver2 = new Solver(doolhof2, i);
             Maze_Solved opgelost2 = solver2.start();
             int curSteps = opgelost2.getSteps();

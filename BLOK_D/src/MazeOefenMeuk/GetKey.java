@@ -43,6 +43,7 @@ public class GetKey implements KeyListener
         if(keyCode==38){speler.move(8);}//arrowKey up
         if(keyCode==39){speler.move(6);}//arrowKey rechts
         if(keyCode==40){speler.move(2);}//arrowKey down
+        //if(keyCode==32){speler.verkrijgSnelsteRoute();}//laat oplossing zien
         
     }
 
