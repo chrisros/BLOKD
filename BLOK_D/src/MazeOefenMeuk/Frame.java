@@ -73,7 +73,7 @@ public class Frame extends javax.swing.JFrame {
                 panelKeyReleased(evt);
             }
         });
-        panel.setLayout(new java.awt.GridLayout(7, 6));
+        panel.setLayout(new java.awt.GridLayout(7, 12));
         getContentPane().add(panel, java.awt.BorderLayout.CENTER);
 
         panel2.setBackground(new java.awt.Color(51, 51, 51));
