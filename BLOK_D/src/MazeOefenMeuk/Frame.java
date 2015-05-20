@@ -139,12 +139,9 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
             //button clicked > teken de maze:
             doolhof.paintMaze();
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Er is een kritische fout opgetreden, graag de palicatie opnieuw opstarten");
-        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

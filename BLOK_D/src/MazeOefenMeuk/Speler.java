@@ -19,7 +19,7 @@ public class Speler{
         this.y = y;
         this.doolhof = doolhof;
     }
-    public void move(int key) throws IOException{
+    public void move(int key){
         int oldX = x;
         int oldY = y;
         if(key==4){x--; if(doolhof.getBlock(x, y)==0){x++;}}

@@ -64,7 +64,6 @@ public class Maze {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Niet alle grafische onderdelen konden geladen worden.");
         }
-
     }
    
     public void printMaze() {
@@ -81,7 +80,7 @@ public class Maze {
       System.out.println();
     }
         
-    public void paintMaze() throws IOException
+    public void paintMaze()
     {
         //panel leegmaken
         panel.removeAll();
@@ -103,16 +102,20 @@ public class Maze {
                 else if(c==4)           {returnImage=finish;    color=Color.red;        walkable=true;}
                 else                    {returnImage=pad;       color=Color.lightGray;  walkable=false;}
                 
-                Block blok; 
-                if(player==true)   
-                { 
-                   color=Color.pink;
-                   blok = new HeldBlock(held, returnImage, color);          
-                }else
-                {
-                    blok = new Block(returnImage, color);
+                Block blok;
+                try {
+                    if(player==true)   
+                    { 
+                       color=Color.pink;
+                       blok = new HeldBlock(held, returnImage, color);          
+                    }else
+                    {
+                        blok = new Block(returnImage, color);
+                    }
+                    panel.add(blok);
+                } catch (Exception e) {
                 }
-                panel.add(blok);            
+            
             }          
         }
         //panel met nieuwe UI inladen

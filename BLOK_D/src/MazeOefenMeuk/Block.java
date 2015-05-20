@@ -18,15 +18,20 @@ import javax.swing.JComponent;
  */
 public class Block extends JComponent{
     
-    protected final Color returnColor;
-    protected final BufferedImage returnImage;
+    protected Color returnColor;
+    protected BufferedImage returnImage;
     
     //int c = integer waarde van block in grid
     //s = boolean solved 
     //p = player (locatie bevat player)
     public Block(BufferedImage image, Color color) throws IOException{    
-        returnImage = image;   
-        returnColor =color;
+        try {
+            returnImage = image;   
+            returnColor =color;  
+        } catch (Exception e) {
+            
+        }
+        
     }
     
     @Override
