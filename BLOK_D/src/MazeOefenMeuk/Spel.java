@@ -4,6 +4,7 @@
 
 package MazeOefenMeuk;
 
+import java.io.IOException;
 import javax.swing.JFrame;
 
 /**
@@ -16,7 +17,7 @@ public class Spel {
    int blockSize = 100;     //grootte van elke block ven het grid
    int steps;
    
-   public void constructLevel(){
+   public void constructLevel() throws IOException{
    //  Level data, creates new Maze object with the start and finish // 
     int i = 1;
     Maze doolhof = new Maze(x, y);
@@ -39,10 +40,15 @@ public class Spel {
     }
        
     //================================================================//
+    
         Speler speler = new Speler(x, y, doolhof);
         Frame frame = new Frame(doolhof, opgelost, speler);
+        ScoreBoard scoreboard = new ScoreBoard(frame, 1000);
+        speler.setScoreBoard(scoreboard);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(doolhof.getWidth()*blockSize, doolhof.getHeight()*blockSize);
+        frame.setSize(doolhof.getWidth()*blockSize, (doolhof.getHeight()*blockSize)+90);
+        frame.setPanelGrid(doolhof.getWidth(), doolhof.getHeight());
+        
         String feedback;
         if(opgelost.isDone())
         {

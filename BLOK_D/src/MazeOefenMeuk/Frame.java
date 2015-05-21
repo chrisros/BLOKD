@@ -6,6 +6,7 @@
 
 package MazeOefenMeuk;
 
+import java.awt.GridLayout;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -36,7 +37,9 @@ public class Frame extends javax.swing.JFrame {
         opgelost.setPanel(panel);
     }
     
-  
+    public void setPanelGrid(int w, int h){
+        panel.setLayout(new GridLayout(h,w));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,7 +55,7 @@ public class Frame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         feedback = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        topPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         score = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -110,30 +113,30 @@ public class Frame extends javax.swing.JFrame {
 
         getContentPane().add(panel2, java.awt.BorderLayout.SOUTH);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        topPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Score: ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 20));
+        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 20));
 
         score.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
         score.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         score.setText("0000");
         score.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 80, -1));
+        topPanel.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 80, -1));
 
         jLabel3.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Level: ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 90, -1));
+        topPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 90, -1));
 
         level.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
         level.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         level.setText("0001");
-        jPanel1.add(level, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, 20));
+        topPanel.add(level, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, 20));
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(topPanel, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -203,14 +206,18 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel level;
     private javax.swing.JPanel panel;
     private javax.swing.JPanel panel2;
     private javax.swing.JLabel score;
+    private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 
   public void setFeedback(String text){
         feedback.setText(text);
     }
+    public void setScore(String text){
+        score.setText(text);
+    }
+
 }

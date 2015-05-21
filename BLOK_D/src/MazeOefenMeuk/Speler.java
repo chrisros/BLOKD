@@ -1,6 +1,7 @@
 package MazeOefenMeuk;
 
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -13,6 +14,7 @@ public class Speler{
     private int y;
     private Maze doolhof;
     private int steps = 0;
+    private ScoreBoard scoreBoard;
     
     public Speler(int x, int y, Maze doolhof){
         this.x = x;
@@ -33,11 +35,15 @@ public class Speler{
         {
            steps++;
            doolhof.setPlayerX(x);
-           doolhof.setStartY(y);
+           doolhof.setPlayerY(y);
            doolhof.paintMaze();
-           //System.out.println(steps);
-           //System.out.println(x+" "+y); 
+           scoreBoard.movePenalty();
+           if(isAtEnd())
+           {
+                JOptionPane.showMessageDialog(null, "Het einde is bereikt");   
+           }
         }
+        
     }
     
     public void verkrijgSnelsteRoute(JPanel panel) throws IOException
@@ -62,6 +68,14 @@ public class Speler{
             }
         }
         opgelost.paintMaze();
+        scoreBoard.cheatPenalty();
+    }
+    
+    private boolean isAtEnd(){
+        return x==doolhof.getEndX()&&y==doolhof.getEndY();
+    }
+    public void setScoreBoard(ScoreBoard board){
+        scoreBoard = board;
     }
     
     public int getX(){return x;}

@@ -22,6 +22,7 @@ public class Maze {
     
     protected Color color;
     boolean walkable;
+    
     protected BufferedImage wall;
     protected BufferedImage pad;
     protected BufferedImage solvedPad;
@@ -29,6 +30,7 @@ public class Maze {
     protected BufferedImage finish;
     protected BufferedImage held;
     protected BufferedImage returnImage; 
+    
     
     protected  JPanel panel; 
     protected final int startX;
@@ -40,10 +42,15 @@ public class Maze {
     protected boolean solution = false;
     protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0},
                              {0,1,1,1,1,0,1,1,1,0,1,0},
-                             {0,0,1,0,1,1,1,0,1,0,1,0},       
+                             {0,0,1,0,1,1,1,1,1,1,1,0},       
                              {0,1,1,0,1,0,0,1,1,0,1,0},
                              {0,1,0,0,1,0,0,1,0,0,1,0},
-                             {0,1,1,1,1,1,1,1,1,1,1,0}, 
+                             {0,0,1,1,1,1,1,1,0,1,1,0}, 
+                             {0,1,1,1,0,0,1,0,1,0,1,0},
+                             {0,0,1,0,1,1,1,1,1,0,1,0},       
+                             {0,1,0,1,1,0,0,1,1,0,1,0},
+                             {0,1,0,0,1,0,0,1,0,0,1,0},
+                             {0,1,1,1,1,1,0,1,1,1,1,0}, 
                              {0,0,0,0,0,0,0,0,0,0,0,0}};  
 
    public Maze(int x, int y){
@@ -52,7 +59,7 @@ public class Maze {
        playerX = x;
        playerY = y;
        endX = 10;
-       endY = 5;
+       endY = 10;
        
         try {
             wall       = ImageIO.read(new File("src/images/wall.PNG"));
@@ -139,5 +146,5 @@ public class Maze {
    public int getPlayerY(){return playerY;}
    public void setPanel(JPanel pan){panel = pan;}
    public void setPlayerX(int x){playerX = x;}
-   public void setStartY(int y){playerY = y;}
+   public void setPlayerY(int y){playerY = y;}
 }
