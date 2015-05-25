@@ -41,7 +41,7 @@ public class Spel {
        
     //================================================================//
     
-        Speler speler = new Speler(x, y, doolhof);
+        Held speler = new Held(x, y, doolhof);
         Frame frame = new Frame(doolhof, opgelost, speler);
         ScoreBoard scoreboard = new ScoreBoard(frame, 1000);
         speler.setScoreBoard(scoreboard);

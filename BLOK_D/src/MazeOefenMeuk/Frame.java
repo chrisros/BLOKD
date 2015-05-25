@@ -19,8 +19,8 @@ public class Frame extends javax.swing.JFrame {
 
     Maze doolhof;
     Maze_Solved opgelost;
-    Speler speler;
-    public Frame(Maze doolhof, Maze_Solved opgelost, Speler speler ) {
+    Held speler;
+    public Frame(Maze doolhof, Maze_Solved opgelost, Held speler ) {
         initComponents();
         setVisible(true);
         setTitle("EscApe The Game");
@@ -30,6 +30,7 @@ public class Frame extends javax.swing.JFrame {
         this.doolhof = doolhof;
         this.opgelost = opgelost;
         this.speler = speler;
+        speler.setPanel(panel);
         panel.setFocusable(true);
         KeyListener checkKey = new GetKey(speler);
         panel.addKeyListener(checkKey);
@@ -150,7 +151,7 @@ public class Frame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             //button clicked > teken de oplossing:
-            speler.verkrijgSnelsteRoute(panel);
+            speler.verkrijgSnelsteRoute();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Er is een kritische fout opgetreden, graag de palicatie opnieuw opstarten"); 
         }

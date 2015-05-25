@@ -1,52 +1,79 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *verantwoordelijk voor het ophalken van toetsaanslagen, en deze doorgeven aan de held 
  */
 
 package MazeOefenMeuk;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
- *
  * @author Chris
  */
 public class GetKey implements KeyListener
 {
-    private int c1;
-    private int c2;
-    private int c3;
-    private int c4;
-    private final Speler speler;
+    //array voor het bewaren van de laatste 4 ingetoetste toetsen
+    //hiermee kunnen cheatcodes worden herkend
+    private int[] c = new int[4];
     
+    private final Held speler;
     
-    public GetKey(Speler speler){
+    public GetKey(Held speler){
         this.speler = speler;
     }
     
-    
+    //kijkt of er een het woord 'help' word getyped
+    private boolean cheatCode(int code)
+    {
+        boolean cheated = false;
+        
+        c[3]=c[2]; c[2]=c[1]; c[1]=c[0]; c[0] = code;
+        //     H       E       L       P
+        if(c[3]==72&&c[2]==69&&c[1]==76&&c[0]==80)
+        {
+            cheated = true;
+        } 
+        return cheated;
+    }
+
 
     @Override
     public void keyPressed(KeyEvent e) 
     {
         
         int keyCode = e.getKeyCode();
-        
-        //kijkt of er een het woord 'help' word getyped
-        c4=c3; c3=c2; c2=c1; c1 = keyCode;
-        if(c4==72&&c3==69&&c2==76&&c1==80){System.out.println("Jij cheater");} 
-    
-        //parsed de keypresses naar de player in game (richting is gelijk aan numpad)
-        if(keyCode==37){speler.move(4);}//arrowKey links
-        if(keyCode==38){speler.move(8);}//arrowKey up
-        if(keyCode==39){speler.move(6);}//arrowKey rechts
-        if(keyCode==40){speler.move(2);}//arrowKey down
-        //if(keyCode==32){speler.verkrijgSnelsteRoute();}//laat oplossing zien
-        
+      
+        switch(keyCode)
+        {
+            case 37:
+                speler.move(KEYVALUE.LEFT);
+                break;
+                
+            case 38:
+                speler.move(KEYVALUE.UP);
+                break;
+                
+            case 39:
+                speler.move(KEYVALUE.RIGHT);
+                break;
+                
+            case 40:
+                speler.move(KEYVALUE.DOWN);
+                break;
+        }
+        if(cheatCode(keyCode))
+        {
+            try {
+                speler.verkrijgSnelsteRoute();
+            } catch (IOException ex) {
+                Logger.getLogger(GetKey.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }  
     }
-
+    
+    //vereiste methodes voor het implementeren van KeyListener java class
     @Override
     public void keyReleased(KeyEvent e) {}
     @Override

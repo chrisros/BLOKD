@@ -1,3 +1,7 @@
+/*
+ * een representatie van de held (super aap)
+ */
+
 package MazeOefenMeuk;
 
 import java.io.IOException;
@@ -6,28 +10,48 @@ import javax.swing.JPanel;
 
 
 /**
- *
  * @author Chris
  */
-public class Speler{
+public class Held{
     private int x;
     private int y;
     private Maze doolhof;
     private int steps = 0;
     private ScoreBoard scoreBoard;
+    private JPanel panel;
     
-    public Speler(int x, int y, Maze doolhof){
+    public Held(int x, int y, Maze doolhof)
+    {
         this.x = x;
         this.y = y;
         this.doolhof = doolhof;
     }
-    public void move(int key){
+    
+    public void move(KEYVALUE key)
+    {
         int oldX = x;
         int oldY = y;
-        if(key==4){x--; if(doolhof.getBlock(x, y)==0){x++;}}
-        if(key==6){x++; if(doolhof.getBlock(x, y)==0){x--;}}
-        if(key==8){y--; if(doolhof.getBlock(x, y)==0){y++;}}
-        if(key==2){y++; if(doolhof.getBlock(x, y)==0){y--;}}
+        
+        switch(key)
+        {
+            case LEFT:
+                x--; 
+                if(doolhof.getBlock(x, y)==0){x++;}
+                break;
+            case RIGHT:
+                x++; 
+                if(doolhof.getBlock(x, y)==0){x--;}
+                break;
+            case UP:
+                y--; 
+                if(doolhof.getBlock(x, y)==0){y++;}
+                break;
+            case DOWN:
+                y++; 
+                if(doolhof.getBlock(x, y)==0){y--;}
+                break;
+        }
+        
         
         //kijkt of er verandering heeft plaatsgevonden
         if(x==oldX&&y==oldY){}
@@ -46,7 +70,7 @@ public class Speler{
         
     }
     
-    public void verkrijgSnelsteRoute(JPanel panel) throws IOException
+    public void verkrijgSnelsteRoute() throws IOException
     {
         int i = 1;
         Maze doolhof2 = new Maze(x, y);
@@ -80,4 +104,5 @@ public class Speler{
     
     public int getX(){return x;}
     public int getY(){return y;}
+    public void setPanel(JPanel p){panel = p;}
 }

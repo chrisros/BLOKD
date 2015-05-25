@@ -6,10 +6,8 @@
 
 package MazeOefenMeuk;
 
-import javax.swing.JFrame;
 
 /**
- *
  * @author Chris
  */
 
