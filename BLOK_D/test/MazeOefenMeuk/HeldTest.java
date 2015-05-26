@@ -63,7 +63,7 @@ public class HeldTest {
         instance.move(KEYVALUE.DOWN);
 
         int expResult = 1;        
-        int result = x;
+        int result = y;
         assertEquals(expResult, result);
         System.out.println("Test geslaagd, DOWN");
     }
@@ -77,7 +77,7 @@ public class HeldTest {
         instance.move(KEYVALUE.UP);
 
         int expResult = 1;        
-        int result = x;
+        int result = y;
         assertEquals(expResult, result);
         System.out.println("Test geslaagd, UP");
     }
