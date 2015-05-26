@@ -19,9 +19,9 @@ class HeldBlock extends Block {
 
     private final BufferedImage held;
     
-    public HeldBlock(BufferedImage held, BufferedImage returnImage, Color color) throws IOException 
+    public HeldBlock(BufferedImage held, BufferedImage returnImage, Color color, int blokSize) throws IOException 
     {
-        super(returnImage, color);
+        super(returnImage, color, blokSize);
         this.held = held; 
     }
     @Override
@@ -29,13 +29,13 @@ class HeldBlock extends Block {
         //maakt een component met een bepaalde hoeveelheid squares
     
         try {
-            g.drawImage(returnImage, 0,0,100,100, this);
-            g.drawImage(held, 0,0,100,100, this);
+            g.drawImage(returnImage, 0,0,blokSize,blokSize, this);
+            g.drawImage(held, 0,0,blokSize,blokSize, this);
             //g.fillRect(0, 0, 64, 64);
             setVisible(true);
         } catch (Exception e) {
             g.setColor(returnColor);
-            g.fillRect(0, 0, 100, 100);
+            g.fillRect(0, 0, blokSize, blokSize);
             setVisible(true);
         
         }

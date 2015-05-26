@@ -20,14 +20,17 @@ public class Block extends JComponent{
     
     protected Color returnColor;
     protected BufferedImage returnImage;
-    
+    protected int blokSize;
     //int c = integer waarde van block in grid
     //s = boolean solved 
     //p = player (locatie bevat player)
-    public Block(BufferedImage image, Color color) throws IOException{    
+    
+    public Block(BufferedImage image, Color color, int bS) throws IOException{
+        
         try {
             returnImage = image;   
             returnColor =color;  
+            blokSize = bS;
         } catch (Exception e) {
             
         }
@@ -39,13 +42,13 @@ public class Block extends JComponent{
         //maakt een component met een bepaalde hoeveelheid squares
     
         try {
-            g.drawImage(returnImage, 0,0,100,100, this);
+            g.drawImage(returnImage, 0,0,40,40, this);
 
             //g.fillRect(0, 0, 64, 64);
             setVisible(true);
         } catch (Exception e) {
             g.setColor(returnColor);
-            g.fillRect(0, 0, 100, 100);
+            g.fillRect(0, 0, blokSize, blokSize);
             setVisible(true);
         
         }

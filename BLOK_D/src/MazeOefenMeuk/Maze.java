@@ -33,6 +33,7 @@ public class Maze {
     
     
     protected  JPanel panel; 
+    protected final int blockSize = 40;
     protected final int startX;
     protected final int startY;
     protected final int endX;
@@ -110,10 +111,10 @@ public class Maze {
                     if(player==true)   
                     { 
                        color=Color.pink;
-                       blok = new HeldBlock(held, returnImage, color);          
+                       blok = new HeldBlock(held, returnImage, color, blockSize);          
                     }else
                     {
-                        blok = new Block(returnImage, color);
+                        blok = new Block(returnImage, color, blockSize);
                     }
                     panel.add(blok);
                 } catch (Exception e) {

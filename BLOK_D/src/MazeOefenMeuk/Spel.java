@@ -14,7 +14,7 @@ public class Spel {
    //config 
    int x = 1;               //default start positie 
    int y = 1;               //default start positie
-   int blockSize = 100;     //grootte van elke block ven het grid
+   int blockSize = 40;     //grootte van elke block ven het grid
    int steps;
    
    public void constructLevel() throws IOException{
