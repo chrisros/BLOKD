@@ -54,8 +54,8 @@ public class Maze {
        startY = y;
        playerX = x;
        playerY = y;
-       endX = 10;
-       endY = 4;
+       endX = 12;
+       endY = 6;
        
         try {
             wall       = ImageIO.read(new File("src/images/wall.PNG"));

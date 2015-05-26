@@ -18,9 +18,9 @@ import javax.swing.JOptionPane;
 public class Frame extends javax.swing.JFrame {
 
     Maze doolhof;
-    Maze_Solved opgelost;
+    MazeSolved opgelost;
     Held speler;
-    public Frame(Maze doolhof, Maze_Solved opgelost, Held speler ) {
+    public Frame(Maze doolhof, MazeSolved opgelost, Held speler ) {
         initComponents();
         setVisible(true);
         setTitle("EscApe The Game");

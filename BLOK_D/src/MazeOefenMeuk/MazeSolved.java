@@ -12,12 +12,12 @@ import java.io.IOException;
  *
  * @author Chris
  */
-public class Maze_Solved extends Maze{
+public class MazeSolved extends Maze{
     
     private final int steps;
     private final boolean done;
     
-    public Maze_Solved(int[][] maze, int x, int y, int count, boolean solved) throws IOException {
+    public MazeSolved(int[][] maze, int x, int y, int count, boolean solved) throws IOException {
         super(x, y);
         grid = maze;
         steps = count;

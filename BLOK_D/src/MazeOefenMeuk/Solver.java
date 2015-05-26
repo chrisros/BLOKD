@@ -37,11 +37,11 @@ public class Solver {
         steps   = -1;                        //varibele voor opslaan hoeveel stappen er zijn
     }
         //Start de solve actie 
-       public Maze_Solved start() throws IOException
+       public MazeSolved start() throws IOException
        {
           
            boolean  solved = solve(startY, startX);         
-           Maze_Solved doolhofOpgelost = new Maze_Solved(grid, startX, startY, steps, solved);              
+           MazeSolved doolhofOpgelost = new MazeSolved(grid, startX, startY, steps, solved);              
            return doolhofOpgelost;
          
        }
