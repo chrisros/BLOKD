@@ -37,6 +37,7 @@ public class Held{
             case LEFT:
                 x--; 
                 if(doolhof.getBlock(x, y)==0){x++;}
+                else System.out.println("IK BEN WEl LINKS GEGAAN");
                 break;
             case RIGHT:
                 x++; 
