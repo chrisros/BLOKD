@@ -7,7 +7,6 @@
 package MazeOefenMeuk;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -24,17 +23,17 @@ public class Maze {
     protected Color color;
     boolean walkable;
     
-    protected BufferedImage wall;
-    protected BufferedImage pad;
-    protected BufferedImage solvedPad;
-    protected BufferedImage start;
-    protected BufferedImage finish;
-    protected BufferedImage held;
-    protected BufferedImage heldT;
-    protected BufferedImage heldB;
-    protected BufferedImage heldL;
-    protected BufferedImage heldR;
-    protected BufferedImage returnImage; 
+    private BufferedImage wall;
+    private BufferedImage pad;
+    private BufferedImage solvedPad;
+    private BufferedImage start;
+    private BufferedImage finish;
+    private BufferedImage held;
+    private BufferedImage heldT;
+    private BufferedImage heldB;
+    private BufferedImage heldL;
+    private BufferedImage heldR;
+    private BufferedImage returnImage; 
     
     
     protected  JPanel panel; 
@@ -79,7 +78,6 @@ public class Maze {
             JOptionPane.showMessageDialog(null, "Niet alle grafische onderdelen konden geladen worden.");
         }
     }
-   
        public void rotate(KEYVALUE key) 
        {
             double angle = 0;
@@ -129,29 +127,52 @@ public class Maze {
                 if(row==endY&&column==endX){grid[row][column]=4;}
                 if(row==playerY&&column==playerX){player=true;}
                 
-                int c=grid[row][column];
+                switch (grid[row][column]){
+                    case(0) :          
+                        returnImage = wall;      
+                        color = Color.black;      
+                        walkable = false;
+                        break;
+                    case(2)  :        
+                        returnImage = start;     
+                        color = Color.orange;     
+                         walkable = true;
+                         break;
+                    case(4)  :        
+                        returnImage = finish;    
+                        color = Color.red;        
+                        walkable = true;
+                        break;
                 
-                if     (c==0)           {returnImage=wall;      color=Color.black;      walkable=false;}
-                else if(c==7&&solution) {returnImage=solvedPad; color=Color.green;      walkable=true;}
-                else if(c==2)           {returnImage=start;     color=Color.orange;     walkable=true;}
-                else if(c==4)           {returnImage=finish;    color=Color.red;        walkable=true;}
-                else                    {returnImage=pad;       color=Color.lightGray;  walkable=false;}
+                    default :
+                        returnImage = pad;       
+                        color = Color.lightGray;  
+                        walkable = false;
+                }
+                if(solution&&grid[row][column]==7){
+                    returnImage = solvedPad;
+                    color = Color.green;
+                    walkable = true;
+                }
+                
                 
                 Block blok;
                 try {
                     if(player==true)   
                     { 
                        color=Color.pink;
-                       blok = new HeldBlock(held, returnImage, color, blockSize);          
+                       blok = new Block(returnImage, color, blockSize, true);
+                       blok.setTopImage(held);
                     }else
                     {
-                        blok = new Block(returnImage, color, blockSize);
+                        blok = new Block(returnImage, color, blockSize, false);
                     }
                     panel.add(blok);
                 } catch (Exception e) {
+                }  
                 }
-            
-            }          
+                
+                    
         }
         //panel met nieuwe UI inladen
         panel.setBackground(Color.BLACK);
@@ -163,7 +184,8 @@ public class Maze {
     } 
     
    public int[][] getGrid(){return grid;}
-   public int getBlock(int x, int y){return grid[y][x];} 
+   public int getBlock(int x, int y){return grid[y][x];}
+   public void setBlock(int x, int y, int value){grid[y][x]=value;} 
    public int getStartX(){return startX;}
    public int getStartY(){return startY;}
    public int getEndX(){return endX;}
@@ -175,6 +197,8 @@ public class Maze {
    public void setPanel(JPanel pan){panel = pan;}
    public void setPlayerX(int x){playerX = x;}
    public void setPlayerY(int y){playerY = y;}
-
+   public void setSolution(boolean bool){solution=bool;}
+   public void setGrid(int[][] Grid){grid = Grid;}
+        
 
 }

@@ -95,7 +95,10 @@ public class Held{
                 opgelost=opgelost2;
             }
         }
-        opgelost.paintMaze();
+        //opgelost.paintMaze();
+        doolhof.setGrid(doolhof2.getGrid());
+        doolhof.setBlock(x, y, 1);
+        doolhof.paintMaze();
         scoreBoard.cheatPenalty();
     }
     

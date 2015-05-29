@@ -18,19 +18,22 @@ import javax.swing.JComponent;
  */
 public class Block extends JComponent{
     
-    protected Color returnColor;
-    protected BufferedImage returnImage;
-    protected int blokSize;
+    private Color returnColor;
+    private BufferedImage returnImage;
+    private BufferedImage topImage;
+    private int blokSize;
+    private boolean hasItem;
     //int c = integer waarde van block in grid
     //s = boolean solved 
     //p = player (locatie bevat player)
     
-    public Block(BufferedImage image, Color color, int bS) throws IOException{
+    public Block(BufferedImage image, Color color, int bS, boolean item) throws IOException{
         
         try {
             returnImage = image;   
             returnColor =color;  
             blokSize = bS;
+            hasItem = item;
         } catch (Exception e) {
             
         }
@@ -42,8 +45,11 @@ public class Block extends JComponent{
         //maakt een component met een bepaalde hoeveelheid squares
     
         try {
+            
             g.drawImage(returnImage, 0,0,40,40, this);
-
+            if(hasItem){
+                g.drawImage(topImage, 0,0,blokSize,blokSize, this);
+            }
             //g.fillRect(0, 0, 64, 64);
             setVisible(true);
         } catch (Exception e) {
@@ -55,6 +61,8 @@ public class Block extends JComponent{
         
         
     }
-        
+    public void setTopImage(BufferedImage topimage){
+        topImage=topimage;
+    }
     
 }

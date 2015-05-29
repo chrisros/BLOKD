@@ -24,23 +24,6 @@ public class MazeSolved extends Maze{
         done = solved;
         solution = true;
     }
-    
-        
-    @Override
-    public void printMaze() 
-    {
-
-        System.out.println();
-
-        for (int row=0; row < grid.length; row++) 
-        {
-            for (int column=0; column < grid[row].length; column++)
-                System.out.print (grid[row][column]);
-            System.out.println();
-        }
-        System.out.println();
-        System.out.println("Amount of steps: "+steps);  
-    }
       
     public boolean isDone(){return done;}
     public int getSteps(){return steps;}

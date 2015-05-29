@@ -21,12 +21,14 @@ public class Frame extends javax.swing.JFrame {
     MazeSolved opgelost;
     Held speler;
     public Frame(Maze doolhof, MazeSolved opgelost, Held speler ) {
+        
         initComponents();
         setVisible(true);
         setTitle("EscApe The Game");
         setIconImage(null);
         setResizable(false); 
         setFocusable(true); 
+        
         this.doolhof = doolhof;
         this.opgelost = opgelost;
         this.speler = speler;
@@ -143,17 +145,24 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            //button clicked > teken de maze:
+        try {
             doolhof.paintMaze();
-
+            
+        } catch (Exception e) {
+        }
+        
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             //button clicked > teken de oplossing:
+            doolhof.setSolution(true);
             speler.verkrijgSnelsteRoute();
+            
+            
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Er is een kritische fout opgetreden, graag de palicatie opnieuw opstarten"); 
+            JOptionPane.showMessageDialog(null, "Er is een kritische fout opgetreden, graag de applicatie opnieuw opstarten"); 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
