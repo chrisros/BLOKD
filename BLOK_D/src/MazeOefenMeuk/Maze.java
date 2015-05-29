@@ -7,6 +7,7 @@
 package MazeOefenMeuk;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,10 @@ public class Maze {
     protected BufferedImage start;
     protected BufferedImage finish;
     protected BufferedImage held;
+    protected BufferedImage heldT;
+    protected BufferedImage heldB;
+    protected BufferedImage heldL;
+    protected BufferedImage heldR;
     protected BufferedImage returnImage; 
     
     
@@ -64,11 +69,37 @@ public class Maze {
             solvedPad  = ImageIO.read(new File("src/images/solvedPad.PNG"));
             start      = ImageIO.read(new File("src/images/start.PNG"));
             finish     = ImageIO.read(new File("src/images/finish.PNG"));
-            held       = ImageIO.read(new File("src/images/held.PNG")); 
+            heldB       = ImageIO.read(new File("src/images/heldBottom.PNG")); 
+            heldL       = ImageIO.read(new File("src/images/heldLeft.PNG")); 
+            heldR       = ImageIO.read(new File("src/images/heldRight.PNG")); 
+            heldT       = ImageIO.read(new File("src/images/heldTop.PNG")); 
+            held = heldR;
+            
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Niet alle grafische onderdelen konden geladen worden.");
         }
     }
+   
+       public void rotate(KEYVALUE key) 
+       {
+            double angle = 0;
+            switch(key)
+             {
+                 case LEFT:
+                    held = heldL;
+                    break;
+                 case RIGHT:
+                    held = heldR;
+                    break;
+                 case UP:
+                    held = heldT;
+                     break;
+                 case DOWN:
+                    held = heldB;
+                    break;
+             }
+            
+       }
    
     public void printMaze() {
    
@@ -144,4 +175,6 @@ public class Maze {
    public void setPanel(JPanel pan){panel = pan;}
    public void setPlayerX(int x){playerX = x;}
    public void setPlayerY(int y){playerY = y;}
+
+
 }

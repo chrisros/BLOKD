@@ -37,18 +37,22 @@ public class Held{
             case LEFT:
                 x--; 
                 if(doolhof.getBlock(x, y)==0){x++;}
+                doolhof.rotate(KEYVALUE.LEFT);
                 break;
             case RIGHT:
                 x++; 
                 if(doolhof.getBlock(x, y)==0){x--;}
+                doolhof.rotate(KEYVALUE.RIGHT);
                 break;
             case UP:
                 y--; 
                 if(doolhof.getBlock(x, y)==0){y++;}
+                doolhof.rotate(KEYVALUE.UP);
                 break;
             case DOWN:
                 y++; 
                 if(doolhof.getBlock(x, y)==0){y--;}
+                doolhof.rotate(KEYVALUE.DOWN);
                 break;
         }
         
