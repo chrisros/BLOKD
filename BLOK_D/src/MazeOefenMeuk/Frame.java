@@ -6,9 +6,13 @@
 
 package MazeOefenMeuk;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +24,10 @@ public class Frame extends javax.swing.JFrame {
     Maze doolhof;
     MazeSolved opgelost;
     Held speler;
+    BufferedImage splashScreen;
     public Frame(Maze doolhof, MazeSolved opgelost, Held speler ) {
+        
+        try {splashScreen = ImageIO.read(new File("src/images/heldRight.png")); } catch (Exception e) {}
         
         initComponents();
         setVisible(true);
@@ -28,6 +35,7 @@ public class Frame extends javax.swing.JFrame {
         setIconImage(null);
         setResizable(false); 
         setFocusable(true); 
+        setIconImage(splashScreen);
         
         this.doolhof = doolhof;
         this.opgelost = opgelost;
@@ -36,6 +44,7 @@ public class Frame extends javax.swing.JFrame {
         panel.setFocusable(true);
         KeyListener checkKey = new GetKey(speler);
         panel.addKeyListener(checkKey);
+        
         doolhof.setPanel(panel);
         opgelost.setPanel(panel);
     }
@@ -72,6 +81,7 @@ public class Frame extends javax.swing.JFrame {
         });
 
         panel.setBackground(new java.awt.Color(248, 179, 50));
+        panel.setForeground(new java.awt.Color(255, 255, 255));
         panel.setFocusCycleRoot(true);
         panel.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -81,7 +91,7 @@ public class Frame extends javax.swing.JFrame {
                 panelKeyReleased(evt);
             }
         });
-        panel.setLayout(new java.awt.GridLayout(7, 12));
+        panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(panel, java.awt.BorderLayout.CENTER);
 
         panel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -116,28 +126,38 @@ public class Frame extends javax.swing.JFrame {
 
         getContentPane().add(panel2, java.awt.BorderLayout.SOUTH);
 
+        topPanel.setBackground(new java.awt.Color(51, 51, 51));
+        topPanel.setForeground(new java.awt.Color(255, 255, 255));
         topPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Score: ");
-        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 20));
+        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 20));
 
+        score.setBackground(new java.awt.Color(255, 255, 255));
         score.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        score.setForeground(new java.awt.Color(255, 255, 255));
         score.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         score.setText("0000");
         score.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        topPanel.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 80, -1));
+        topPanel.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 80, -1));
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Level: ");
-        topPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 90, -1));
+        topPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 90, -1));
 
+        level.setBackground(new java.awt.Color(255, 255, 255));
         level.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        level.setForeground(new java.awt.Color(255, 255, 255));
         level.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         level.setText("0001");
-        topPanel.add(level, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, 20));
+        topPanel.add(level, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 20));
 
         getContentPane().add(topPanel, java.awt.BorderLayout.PAGE_START);
 
