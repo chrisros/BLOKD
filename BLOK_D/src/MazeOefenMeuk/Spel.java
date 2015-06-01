@@ -13,14 +13,26 @@ import javax.swing.JFrame;
 public class Spel {
    //config 
    int x = 1;               //default start positie 
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
    int y = 1;               //default start positie
    int blockSize = 40;     //grootte van elke block ven het grid
    int steps;
+   Frame frame;
+   Maze doolhof; 
+   Held speler;
+   ScoreBoard scoreboard;
    
    public void constructLevel() throws IOException{
    //  Level data, creates new Maze object with the start and finish // 
     int i = 1;
-    Maze doolhof = new Maze(x, y);
+    doolhof = new Maze(x, y);
     Solver solver = new Solver(doolhof, i);
     MazeSolved opgelost = solver.start();
     steps = opgelost.getSteps();
@@ -41,10 +53,10 @@ public class Spel {
        
     //================================================================//
     
-        Held speler = new Held(x, y, doolhof);
-        Frame frame = new Frame(doolhof, opgelost, speler);
-        ScoreBoard scoreboard = new ScoreBoard(frame, 1000);
-        speler.setScoreBoard(scoreboard);
+        speler = new Held(x, y, doolhof);
+        frame = new Frame(doolhof, opgelost, speler);
+     
+        setScoreBoard();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(doolhof.getWidth()*blockSize, (doolhof.getHeight()*blockSize)+90);
         frame.setPanelGrid(doolhof.getWidth(), doolhof.getHeight());
@@ -61,4 +73,10 @@ public class Spel {
          
 
    }
+   public void setScoreBoard(){
+       scoreboard = new ScoreBoard(frame, 1000);
+       speler.setScoreBoard(scoreboard);
+   }
+   public Frame getFrame(){return frame;}
+   public Maze getMaze(){return doolhof;} 
 }

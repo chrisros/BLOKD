@@ -29,8 +29,6 @@ public class Held{
     
     public void move(KEYVALUE key)
     {
-        int oldX = x;
-        int oldY = y;
         
         switch(key)
         {
@@ -82,7 +80,7 @@ public class Held{
            doolhof.setPlayerX(x);
            doolhof.setPlayerY(y);
            doolhof.paintMaze();
-           scoreBoard.movePenalty();
+           //scoreBoard.movePenalty();
            if(isAtEnd())
            {
                 JOptionPane.showMessageDialog(null, "Het einde is bereikt");   
@@ -91,6 +89,7 @@ public class Held{
     
     public void verkrijgSnelsteRoute() throws IOException
     {
+        doolhof.setSolution(true);
         int i = 1;
         Maze doolhof2 = new Maze(x, y);
         Solver solver = new Solver(doolhof2, i);

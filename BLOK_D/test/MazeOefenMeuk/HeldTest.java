@@ -5,10 +5,9 @@
  */
 package MazeOefenMeuk;
 
-import static MazeOefenMeuk.KEYVALUE.DOWN;
-import static MazeOefenMeuk.KEYVALUE.RIGHT;
+
 import java.io.IOException;
-import javax.swing.JPanel;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,78 +46,140 @@ public class HeldTest {
     private Maze doolhof;
     int x = 1;
     int y = 1;
-
+    protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                             {0,1,0,1,1,1,1,1,1,1,1,1,1,0},
+                             {0,0,0,1,1,1,1,1,1,1,1,1,1,0},       
+                             {0,1,1,1,1,1,1,1,1,1,1,1,1,0},      
+                             {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+                             {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+                             {0,1,1,1,1,1,1,1,1,1,1,1,1,0}, 
+                             {0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
+    Frame frame;
+    
     public void runTheGame() throws IOException {
 
         Spel game = new Spel();
         game.constructLevel();
+        game.
+        frame = game.getFrame();
+        doolhof = game.getMaze();
+        doolhof.setGrid(grid);
     }
-
+    
     @Test
     public void testMoveDown() throws IOException {
         runTheGame();
 
-        doolhof = new Maze(x, y);
+        //doolhof = new Maze(x, y);
         Held instance = new Held(1, 1, doolhof);
         instance.move(KEYVALUE.DOWN);
 
         int expResult = 1;
-        int result = y;
+        int result = instance.getY();
         assertEquals(expResult, result);
-        System.out.println("Test geslaagd, DOWN");
+        System.out.println("Test geslaagd, niet bewogen DOWN");
     }
 
     @Test
     public void testMoveUp() throws IOException {
         runTheGame();
 
-        doolhof = new Maze(x, y);
+        //doolhof = new Maze(x, y);
         Held instance = new Held(1, 1, doolhof);
         instance.move(KEYVALUE.UP);
 
         int expResult = 1;
-        int result = y;
+        int result = instance.getY();
         assertEquals(expResult, result);
-        System.out.println("Test geslaagd, UP");
+        System.out.println("Test geslaagd, niet bewogen UP");
     }
 
     @Test
     public void testMoveLeft() throws IOException {
         runTheGame();
 
-        doolhof = new Maze(x, y);
+        //doolhof = new Maze(x, y);
         Held instance = new Held(1, 1, doolhof);
         instance.move(KEYVALUE.LEFT);
-
         int expResult = 1;
-        int result = x;
+        int result = instance.getX();
         assertEquals(expResult, result);
-        System.out.println("Test geslaagd, LEFT");
+        System.out.println("Test geslaagd, niet bewogen LEFT");
     }
 
     @Test
-    public void testMoveRIGHT() throws IOException {
+    public void testMoveRight() throws IOException {
         runTheGame();
 
-        doolhof = new Maze(x, y);
-        Held instance = new Held(0, 0, doolhof);
-        instance.move(RIGHT);   
+ 
+        Held instance = new Held(1, 1, doolhof);
+        instance.move(KEYVALUE.RIGHT);   
         int expResult = 1;
-        int result = x;
+        int result = instance.getX();
         assertEquals(expResult, result);
-        System.out.println("Test geslaagd, RIGHT");
+        System.out.println("Test geslaagd, niet bewogen RIGHT");
     }
 
     @Test
     public void testMoveLEFTWEL() throws IOException {
         runTheGame();
-
-        doolhof = new Maze(x, y);
-        Held instance = new Held(2, 1, doolhof);
+ 
+        x =4;
+        y =4;
+        
+        Held instance = new Held(x, y, doolhof);
         instance.move(KEYVALUE.LEFT);
-        int expResult = x;
-        int result = 1;
+        int expResult = 3;
+        int result = instance.getX();
         assertEquals(expResult, result);
-        System.out.println("Test geslaagd, RIGHT");
+        System.out.println("Test geslaagd, leftmove");
+    }
+    
+    
+    @Test
+    public void testMoveRightWEL() throws IOException {
+        runTheGame();
+ 
+        x =4;
+        y =4;
+        
+        Held instance = new Held(x, y, doolhof);
+        instance.move(KEYVALUE.RIGHT);
+        int expResult = 5;
+        int result = instance.getX();
+        assertEquals(expResult, result);
+        System.out.println("Test geslaagd, rightMOve");
+    }
+    
+    
+    @Test
+    public void testMoveUpWEL() throws IOException {
+        runTheGame();
+ 
+        x =4;
+        y =4;
+        
+        Held instance = new Held(x, y, doolhof);
+        instance.move(KEYVALUE.UP);
+        int expResult = 3;
+        int result = instance.getY();
+        assertEquals(expResult, result);
+        System.out.println("Test geslaagd, upMove");
+    }
+    
+    
+    @Test
+    public void testMoveDownWEL() throws IOException {
+        runTheGame();
+ 
+        x =4;
+        y =4;
+        
+        Held instance = new Held(x, y, doolhof);
+        instance.move(KEYVALUE.DOWN);
+        int expResult = 5;
+        int result = instance.getY();
+        assertEquals(expResult, result);
+        System.out.println("Test geslaagd, downMove");
     }
 }
