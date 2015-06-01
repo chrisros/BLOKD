@@ -36,31 +36,48 @@ public class Held{
         {
             case LEFT:
                 x--; 
-                if(doolhof.getBlock(x, y)==0){x++;}
                 doolhof.rotate(KEYVALUE.LEFT);
+                if(doolhof.getBlock(x, y)==0){
+                    x++;
+                } else{
+                    doMove();
+                }
+                
                 break;
             case RIGHT:
                 x++; 
-                if(doolhof.getBlock(x, y)==0){x--;}
                 doolhof.rotate(KEYVALUE.RIGHT);
+                if(doolhof.getBlock(x, y)==0){
+                    x--;
+                } else{
+                    doMove();
+                }
+                
                 break;
             case UP:
                 y--; 
-                if(doolhof.getBlock(x, y)==0){y++;}
                 doolhof.rotate(KEYVALUE.UP);
+                if(doolhof.getBlock(x, y)==0){
+                    y++;
+                } else{
+                    doMove();
+                }
+                
                 break;
             case DOWN:
                 y++; 
-                if(doolhof.getBlock(x, y)==0){y--;}
                 doolhof.rotate(KEYVALUE.DOWN);
+                if(doolhof.getBlock(x, y)==0){
+                    y--;
+                } else{
+                    doMove();
+                }
+                
                 break;
-        }
-        
-        
-        //kijkt of er verandering heeft plaatsgevonden
-        if(x==oldX&&y==oldY){}
-        else
-        {
+        } 
+    }
+    
+    private void doMove(){
            steps++;
            doolhof.setPlayerX(x);
            doolhof.setPlayerY(y);
@@ -71,8 +88,6 @@ public class Held{
                 JOptionPane.showMessageDialog(null, "Het einde is bereikt");   
            }
         }
-        
-    }
     
     public void verkrijgSnelsteRoute() throws IOException
     {
