@@ -102,7 +102,7 @@ public class HeldTest {
 
         doolhof = new Maze(x, y);
         Held instance = new Held(0, 0, doolhof);
-        instance.move(RIGHT);
+        instance.move(RIGHT);   
         int expResult = 1;
         int result = x;
         assertEquals(expResult, result);
@@ -110,14 +110,14 @@ public class HeldTest {
     }
 
     @Test
-    public void testMoveRIGHTWEL() throws IOException {
+    public void testMoveLEFTWEL() throws IOException {
         runTheGame();
 
         doolhof = new Maze(x, y);
         Held instance = new Held(2, 1, doolhof);
         instance.move(KEYVALUE.LEFT);
-        int expResult = x + 1;
-        int result = 2;
+        int expResult = x;
+        int result = 1;
         assertEquals(expResult, result);
         System.out.println("Test geslaagd, RIGHT");
     }
