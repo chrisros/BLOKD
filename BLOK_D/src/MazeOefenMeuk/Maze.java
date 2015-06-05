@@ -6,10 +6,13 @@
 
 package MazeOefenMeuk;
 
+import MagazijnSysteem.Product;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,7 +24,9 @@ import javax.swing.JPanel;
 public class Maze {
     
     protected Color color;
-    boolean walkable;
+    protected boolean walkable;
+    protected int height;
+    protected int width;
     
     private BufferedImage wall;
     private BufferedImage pad;
@@ -46,14 +51,15 @@ public class Maze {
     protected int playerY;
     protected boolean solution = false;
     protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                             {0,1,1,1,1,0,1,0,0,1,1,0,1,0},
+                             {0,2,1,1,1,0,1,0,0,1,1,0,1,0},
                              {0,0,1,0,1,0,1,1,1,1,1,1,1,0},       
                              {0,0,0,1,1,1,1,0,0,1,0,1,1,0},      
                              {0,1,0,1,1,0,0,0,0,1,1,0,1,0},
                              {0,1,0,0,1,0,1,0,0,1,0,0,1,0},
-                             {0,1,1,1,1,1,1,0,0,1,1,1,1,0}, 
+                             {0,1,1,1,1,1,1,0,0,1,1,1,4,0}, 
                              {0,0,0,0,0,0,0,0,0,0,0,0,0,0}};  
-
+    ArrayList<Block> bloks = new ArrayList();
+    
    public Maze(int x, int y){
        startX = x;
        startY = y;
@@ -61,6 +67,9 @@ public class Maze {
        playerY = y;
        endX = 12;
        endY = 6;
+       height = grid.length;
+       width = grid[0].length;
+
        
         try {
             wall       = ImageIO.read(new File("src/images/wall.PNG"));
@@ -80,7 +89,6 @@ public class Maze {
     }
        public void rotate(KEYVALUE key) 
        {
-            double angle = 0;
             switch(key)
              {
                  case LEFT:
@@ -98,93 +106,107 @@ public class Maze {
              }
             
        }
-   
-    public void printMaze() {
-   
-      System.out.println();
-
-      for (int row=0; row < grid.length; row++) 
-      {
-         for (int column=0; column < grid[row].length; column++)
-            System.out.print (grid[row][column]);
-         System.out.println();
-      }
-
-      System.out.println();
-    }
-        
+           
+       
     public void paintMaze()
     {
-        //panel leegmaken
-        panel.removeAll();
                 
-        for (int row=0; row < grid.length; row++) 
+        for (int row=0; row < height; row++) 
         {
-            for (int column=0; column < grid[row].length; column++)
+            for (int column=0; column < width; column++)
             {
                 boolean player = false;
+                boolean destructable = true;
+                boolean hasitem = false;
                 if(row==startY&&column==startX){grid[row][column]=2;}
                 if(row==endY&&column==endX){grid[row][column]=4;}
                 if(row==playerY&&column==playerX){player=true;}
+                if(row==0||column==0||row==height-1||column==width-1){destructable = false;}
                 
                 switch (grid[row][column]){
-                    case(0) :          
-                        returnImage = wall;      
-                        color = Color.black;      
-                        walkable = false;
-                        break;
+                    
                     case(2)  :        
-                        returnImage = start;     
-                        color = Color.orange;     
-                         walkable = true;
+                        returnImage = start;        
+                        walkable = true;
                          break;
                     case(4)  :        
-                        returnImage = finish;    
-                        color = Color.red;        
+                        returnImage = finish;          
                         walkable = true;
                         break;
-                
+                    case(0) :          
+                        returnImage = wall;           
+                        walkable = false;
+                        break;
                     default :
                         returnImage = pad;       
-                        color = Color.lightGray;  
                         walkable = false;
                 }
                 if(solution&&grid[row][column]==7){
                     returnImage = solvedPad;
-                    color = Color.green;
                     walkable = true;
                 }
                 
                 
                 Block blok;
-                try {
-                    if(player==true)   
-                    { 
-                       color=Color.pink;
-                       blok = new Block(returnImage, color, blockSize, true);
-                       blok.setTopImage(held);
-                    }else
-                    {
-                        blok = new Block(returnImage, color, blockSize, false);
-                    }
-                    panel.add(blok);
-                } catch (Exception e) {
-                }  
-                }
                 
+                try {
+                    blok = new Block(row, column, returnImage, blockSize, hasitem, destructable, walkable, player);
+                    if(player==true){ blok.setTopImage(held);}
+                    bloks.add(blok);
+                    System.out.println(blok);
+                } catch (Exception e) {}  
+                }
                     
         }
-        //panel met nieuwe UI inladen
         panel.setBackground(Color.BLACK);
         panel.setFocusable(true);
         panel.requestFocusInWindow();
-        panel.updateUI();
-        
-        
+        repaint();        
     } 
     
+    //tekent de objecten uit de arraylist opnieuw op het panel
+    public void repaint(){
+        
+        panel.removeAll();   
+        
+        Iterator<Block> iter = bloks.iterator();
+        while(iter.hasNext()){
+            Block curBlok  = iter.next();
+            panel.add(curBlok);
+            System.out.println(curBlok); 
+        }
+        panel.updateUI();
+    } 
+    
+    //bekijkt of een object op een bepaal dcoordinaat (x, y) walkable is
+    public boolean isBlockWalkable(int x, int y)
+    {
+        boolean walk = false;
+        Iterator<Block> iter = bloks.iterator();
+        while(iter.hasNext()){
+            Block curBlok  = iter.next();
+            if(curBlok.getX()==x&&curBlok.getY()==y){
+                walk = curBlok.getWalkable();   
+            }                  
+        }
+        return walk;
+    }
+    
+    public void movePLayer(int x, int y){
+         Iterator<Block> iter = bloks.iterator();
+        while(iter.hasNext()){
+            Block curBlok  = iter.next();
+            if(curBlok.getX()==x&&curBlok.getY()==y){
+                curBlok.setPlayer(true);  
+            }else{
+                curBlok.setPlayer(false);
+            } 
+
+        }
+    }
+    
    public int[][] getGrid(){return grid;}
-   public int getBlock(int x, int y){return grid[y][x];}
+   
    public void setBlock(int x, int y, int value){grid[y][x]=value;} 
    public int getStartX(){return startX;}
    public int getStartY(){return startY;}

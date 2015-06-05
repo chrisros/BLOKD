@@ -35,7 +35,7 @@ public class Held{
             case LEFT:
                 x--; 
                 doolhof.rotate(KEYVALUE.LEFT);
-                if(doolhof.getBlock(x, y)==0){
+                if(doolhof.isBlockWalkable(x, y)){
                     x++;
                 } else{
                     doMove();
@@ -45,7 +45,7 @@ public class Held{
             case RIGHT:
                 x++; 
                 doolhof.rotate(KEYVALUE.RIGHT);
-                if(doolhof.getBlock(x, y)==0){
+                if(doolhof.isBlockWalkable(x, y)){
                     x--;
                 } else{
                     doMove();
@@ -55,7 +55,7 @@ public class Held{
             case UP:
                 y--; 
                 doolhof.rotate(KEYVALUE.UP);
-                if(doolhof.getBlock(x, y)==0){
+                if(doolhof.isBlockWalkable(x, y)){
                     y++;
                 } else{
                     doMove();
@@ -65,7 +65,7 @@ public class Held{
             case DOWN:
                 y++; 
                 doolhof.rotate(KEYVALUE.DOWN);
-                if(doolhof.getBlock(x, y)==0){
+                if(doolhof.isBlockWalkable(x, y)){
                     y--;
                 } else{
                     doMove();
@@ -77,9 +77,8 @@ public class Held{
     
     private void doMove(){
            steps++;
-           doolhof.setPlayerX(x);
-           doolhof.setPlayerY(y);
-           doolhof.paintMaze();
+           doolhof.movePLayer(x, y);
+           doolhof.repaint();
            //scoreBoard.movePenalty();
            if(isAtEnd())
            {

@@ -6,7 +6,7 @@
 
 package MazeOefenMeuk;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -18,22 +18,28 @@ import javax.swing.JComponent;
  */
 public class Block extends JComponent{
     
-    private Color returnColor;
     private BufferedImage returnImage;
     private BufferedImage topImage;
     private int blokSize;
     private boolean hasItem;
-    //int c = integer waarde van block in grid
-    //s = boolean solved 
-    //p = player (locatie bevat player)
+    private boolean destructable;
+    private boolean walkable;
+    private int x;
+    private int y;
+    private boolean hasPlayer;
+
     
-    public Block(BufferedImage image, Color color, int bS, boolean item) throws IOException{
+    public Block(int X, int Y, BufferedImage image, int bS, boolean item, boolean destruct, boolean Walkable, boolean player) throws IOException{
         
         try {
-            returnImage = image;   
-            returnColor =color;  
-            blokSize = bS;
-            hasItem = item;
+            returnImage  = image;   
+            blokSize     = bS;
+            hasItem      = item;
+            destructable = destruct;
+            x            = X;
+            y            = Y;
+            walkable     = Walkable;
+            hasPlayer    = player;
         } catch (Exception e) {
             
         }
@@ -46,14 +52,12 @@ public class Block extends JComponent{
     
         try {
             
-            g.drawImage(returnImage, 0,0,40,40, this);
+            g.drawImage(returnImage, 0,0,blokSize,blokSize, this);
             if(hasItem){
                 g.drawImage(topImage, 0,0,blokSize,blokSize, this);
             }
-            //g.fillRect(0, 0, 64, 64);
             setVisible(true);
         } catch (Exception e) {
-            g.setColor(returnColor);
             g.fillRect(0, 0, blokSize, blokSize);
             setVisible(true);
         
@@ -65,4 +69,11 @@ public class Block extends JComponent{
         topImage=topimage;
     }
     
+    @Override
+    public String toString(){
+        if(hasPlayer){return hasPlayer+" "+destructable+" "+x+":"+y;}
+        else{return null;}
+    }
+    public boolean getWalkable(){return walkable;}
+    public void setPlayer(boolean bool){ hasPlayer = bool;}
 }
