@@ -36,29 +36,32 @@ public class Held{
                 x--; 
                 doolhof.rotate(KEYVALUE.LEFT);
                 if(doolhof.isBlockWalkable(x, y)){
-                    x++;
+                    doMove();                    
                 } else{
-                    doMove();
+                    x++;
                 }
                 
                 break;
             case RIGHT:
                 x++; 
                 doolhof.rotate(KEYVALUE.RIGHT);
+                System.out.println(x);
+                System.out.println(y);
+                System.out.println(doolhof.isBlockWalkable(x, y));
                 if(doolhof.isBlockWalkable(x, y)){
-                    x--;
+                    doMove();                    
                 } else{
-                    doMove();
+                   x--; 
                 }
                 
                 break;
             case UP:
                 y--; 
                 doolhof.rotate(KEYVALUE.UP);
-                if(doolhof.isBlockWalkable(x, y)){
-                    y++;
-                } else{
+                if(doolhof.isBlockWalkable(x, y)){                    
                     doMove();
+                } else{
+                    y++;
                 }
                 
                 break;
@@ -66,9 +69,9 @@ public class Held{
                 y++; 
                 doolhof.rotate(KEYVALUE.DOWN);
                 if(doolhof.isBlockWalkable(x, y)){
-                    y--;
-                } else{
                     doMove();
+                } else{
+                    y--;
                 }
                 
                 break;
@@ -76,6 +79,7 @@ public class Held{
     }
     
     private void doMove(){
+        System.out.println("jep");
            steps++;
            doolhof.movePLayer(x, y);
            doolhof.repaint();

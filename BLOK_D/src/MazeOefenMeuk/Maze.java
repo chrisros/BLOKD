@@ -139,7 +139,7 @@ public class Maze {
                         break;
                     default :
                         returnImage = pad;       
-                        walkable = false;
+                        walkable = true;
                 }
                 if(solution&&grid[row][column]==7){
                     returnImage = solvedPad;
@@ -153,7 +153,6 @@ public class Maze {
                     blok = new Block(row, column, returnImage, blockSize, hasitem, destructable, walkable, player);
                     if(player==true){ blok.setTopImage(held);}
                     bloks.add(blok);
-                    System.out.println(blok);
                 } catch (Exception e) {}  
                 }
                     
@@ -173,7 +172,7 @@ public class Maze {
         while(iter.hasNext()){
             Block curBlok  = iter.next();
             panel.add(curBlok);
-            System.out.println(curBlok); 
+            //System.out.println(curBlok); 
         }
         panel.updateUI();
     } 
@@ -185,7 +184,7 @@ public class Maze {
         Iterator<Block> iter = bloks.iterator();
         while(iter.hasNext()){
             Block curBlok  = iter.next();
-            if(curBlok.getX()==x&&curBlok.getY()==y){
+            if(curBlok.getx()==x&&curBlok.gety()==y){
                 walk = curBlok.getWalkable();   
             }                  
         }
@@ -196,7 +195,7 @@ public class Maze {
          Iterator<Block> iter = bloks.iterator();
         while(iter.hasNext()){
             Block curBlok  = iter.next();
-            if(curBlok.getX()==x&&curBlok.getY()==y){
+            if(curBlok.getx()==x&&curBlok.gety()==y){
                 curBlok.setPlayer(true);  
             }else{
                 curBlok.setPlayer(false);

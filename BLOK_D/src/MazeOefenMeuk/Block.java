@@ -71,9 +71,12 @@ public class Block extends JComponent{
     
     @Override
     public String toString(){
-        if(hasPlayer){return hasPlayer+" "+destructable+" "+x+":"+y;}
-        else{return null;}
+        return hasPlayer+" "+walkable+" "+destructable+" "+":"+y;
+        
     }
     public boolean getWalkable(){return walkable;}
     public void setPlayer(boolean bool){ hasPlayer = bool;}
+    public int gety(){ return x;}
+    public int getx(){ return y;}
+    
 }

@@ -13,9 +13,7 @@ public class Spel {
 
     //config 
 
-    int x = 1;               //default start positie 
-
-    
+    int x = 1;               //default start positie    
     int y = 1;               //default start positie
     int blockSize = 40;     //grootte van elke block ven het grid
     int steps;
@@ -48,7 +46,7 @@ public class Spel {
         }
 
     //================================================================//
-        speler = new Held(x, y, doolhof);
+        speler = new Held(1, 1, doolhof);
         frame = new Frame(doolhof, opgelost, speler);
 
         setScoreBoard();
