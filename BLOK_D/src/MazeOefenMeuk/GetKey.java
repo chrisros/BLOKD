@@ -47,6 +47,9 @@ public class GetKey implements KeyListener
       
         switch(keyCode)
         {
+            case 32:
+                speler.fire();
+                break;
             case 37:
                 speler.move(KEYVALUE.LEFT);
                 break;

@@ -34,10 +34,6 @@ public class Maze {
     private BufferedImage start;
     private BufferedImage finish;
     private BufferedImage held;
-    private BufferedImage heldT;
-    private BufferedImage heldB;
-    private BufferedImage heldL;
-    private BufferedImage heldR;
     private BufferedImage returnImage; 
     
     
@@ -58,7 +54,7 @@ public class Maze {
                              {0,1,0,0,1,0,1,0,0,1,0,0,1,0},
                              {0,1,1,1,1,1,1,0,0,1,1,1,4,0}, 
                              {0,0,0,0,0,0,0,0,0,0,0,0,0,0}};  
-    ArrayList<Block> bloks = new ArrayList();
+    ArrayList<Block> bloks;
     
    public Maze(int x, int y){
        startX = x;
@@ -77,40 +73,18 @@ public class Maze {
             solvedPad  = ImageIO.read(new File("src/images/solvedPad.PNG"));
             start      = ImageIO.read(new File("src/images/start.PNG"));
             finish     = ImageIO.read(new File("src/images/finish.PNG"));
-            heldB       = ImageIO.read(new File("src/images/heldBottom.PNG")); 
-            heldL       = ImageIO.read(new File("src/images/heldLeft.PNG")); 
-            heldR       = ImageIO.read(new File("src/images/heldRight.PNG")); 
-            heldT       = ImageIO.read(new File("src/images/heldTop.PNG")); 
-            held = heldR;
+            held = ImageIO.read(new File("src/images/heldRight.PNG")); 
             
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Niet alle grafische onderdelen konden geladen worden.");
         }
     }
-       public void rotate(KEYVALUE key) 
-       {
-            switch(key)
-             {
-                 case LEFT:
-                    held = heldL;
-                    break;
-                 case RIGHT:
-                    held = heldR;
-                    break;
-                 case UP:
-                    held = heldT;
-                     break;
-                 case DOWN:
-                    held = heldB;
-                    break;
-             }
-            
-       }
+
            
        
     public void paintMaze()
-    {
-                
+    {  
+        bloks = new ArrayList();
         for (int row=0; row < height; row++) 
         {
             for (int column=0; column < width; column++)
@@ -118,20 +92,23 @@ public class Maze {
                 boolean player = false;
                 boolean destructable = true;
                 boolean hasitem = false;
+                boolean edge = false;
                 if(row==startY&&column==startX){grid[row][column]=2;}
                 if(row==endY&&column==endX){grid[row][column]=4;}
                 if(row==playerY&&column==playerX){player=true;}
-                if(row==0||column==0||row==height-1||column==width-1){destructable = false;}
+                if(row==0||column==0||row==height-1||column==width-1){destructable = false; edge = true;}
                 
                 switch (grid[row][column]){
                     
                     case(2)  :        
                         returnImage = start;        
                         walkable = true;
+                        destructable = false;
                          break;
                     case(4)  :        
                         returnImage = finish;          
                         walkable = true;
+                        destructable = false;
                         break;
                     case(0) :          
                         returnImage = wall;           
@@ -140,6 +117,7 @@ public class Maze {
                     default :
                         returnImage = pad;       
                         walkable = true;
+                        destructable = false;
                 }
                 if(solution&&grid[row][column]==7){
                     returnImage = solvedPad;
@@ -150,8 +128,8 @@ public class Maze {
                 Block blok;
                 
                 try {
-                    blok = new Block(row, column, returnImage, blockSize, hasitem, destructable, walkable, player);
-                    if(player==true){ blok.setTopImage(held);}
+                    blok = new Block(row, column, returnImage, blockSize, hasitem, destructable, walkable, player, edge);
+                    if(player==true){ blok.setPlayerImage(held);}
                     bloks.add(blok);
                 } catch (Exception e) {}  
                 }
@@ -171,8 +149,7 @@ public class Maze {
         Iterator<Block> iter = bloks.iterator();
         while(iter.hasNext()){
             Block curBlok  = iter.next();
-            panel.add(curBlok);
-            //System.out.println(curBlok); 
+            panel.add(curBlok); 
         }
         panel.updateUI();
     } 
@@ -191,21 +168,63 @@ public class Maze {
         return walk;
     }
     
+    public Block getFirstDestructableBlock(int x, int y, KEYVALUE direction){
+        
+            Block curBlok = getBlock(x, y);
+            System.out.println(curBlok);
+            if(curBlok.getDestructable()){
+                    return curBlok;                           
+            }else if(curBlok.isEdge()){
+                return null;
+            }
+                    else{
+                switch(direction)
+                {
+                case LEFT:
+                   x--;
+                   break;
+                case RIGHT:
+                   x++;
+                   break;
+                case UP:
+                    y--;
+                    break;
+                case DOWN:
+                   y++;
+                   break;
+                }
+                return getFirstDestructableBlock(x, y, direction);
+            }   
+        }
+    
+    public Block getBlock(int x, int y){
+        Iterator<Block> iter = bloks.iterator();
+        while(iter.hasNext()){
+            Block curBlok  = iter.next();
+            if(curBlok.getx()==x&&curBlok.gety()==y){
+                return curBlok;
+            }  
+    }
+        return null;
+    }
     public void movePLayer(int x, int y){
          Iterator<Block> iter = bloks.iterator();
         while(iter.hasNext()){
             Block curBlok  = iter.next();
             if(curBlok.getx()==x&&curBlok.gety()==y){
-                curBlok.setPlayer(true);  
+                curBlok.setPlayer(true); 
+                curBlok.setPlayerImage(held);
+                System.out.println(curBlok);
             }else{
                 curBlok.setPlayer(false);
+                curBlok.setPlayerImage(null);
             } 
 
         }
     }
     
    public int[][] getGrid(){return grid;}
-   
+   public void setHeld(BufferedImage Held){held = Held;}
    public void setBlock(int x, int y, int value){grid[y][x]=value;} 
    public int getStartX(){return startX;}
    public int getStartY(){return startY;}

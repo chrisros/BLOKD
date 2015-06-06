@@ -19,17 +19,19 @@ import javax.swing.JComponent;
 public class Block extends JComponent{
     
     private BufferedImage returnImage;
-    private BufferedImage topImage;
+    private BufferedImage playerImage;
+    private BufferedImage itemImage;
     private int blokSize;
     private boolean hasItem;
     private boolean destructable;
     private boolean walkable;
+    private boolean isEdge;
     private int x;
     private int y;
     private boolean hasPlayer;
 
     
-    public Block(int X, int Y, BufferedImage image, int bS, boolean item, boolean destruct, boolean Walkable, boolean player) throws IOException{
+    public Block(int X, int Y, BufferedImage image, int bS, boolean item, boolean destruct, boolean Walkable, boolean player, boolean edge) throws IOException{
         
         try {
             returnImage  = image;   
@@ -40,6 +42,7 @@ public class Block extends JComponent{
             y            = Y;
             walkable     = Walkable;
             hasPlayer    = player;
+            isEdge       = edge;
         } catch (Exception e) {
             
         }
@@ -54,7 +57,10 @@ public class Block extends JComponent{
             
             g.drawImage(returnImage, 0,0,blokSize,blokSize, this);
             if(hasItem){
-                g.drawImage(topImage, 0,0,blokSize,blokSize, this);
+                g.drawImage(itemImage, 0,0,blokSize,blokSize, this);
+            }
+            if(hasPlayer){
+                g.drawImage(playerImage, 0,0,blokSize,blokSize, this);
             }
             setVisible(true);
         } catch (Exception e) {
@@ -65,18 +71,22 @@ public class Block extends JComponent{
         
         
     }
-    public void setTopImage(BufferedImage topimage){
-        topImage=topimage;
-    }
+    
     
     @Override
     public String toString(){
-        return hasPlayer+" "+walkable+" "+destructable+" "+":"+y;
+        return hasPlayer+" "+walkable+" "+destructable+" "+x+":"+y;
         
     }
     public boolean getWalkable(){return walkable;}
+    public boolean getDestructable(){return destructable;}
+    public boolean isEdge(){return isEdge;}
     public void setPlayer(boolean bool){ hasPlayer = bool;}
     public int gety(){ return x;}
     public int getx(){ return y;}
-    
+    public void setReturnImage(BufferedImage image){returnImage = image;}
+    public void setItemImage(BufferedImage image){itemImage = image;}
+    public void setPlayerImage(BufferedImage image){playerImage=image;}
+    public void setWalkable(boolean bool){walkable = bool;}
+    public void setDestructable(boolean bool){destructable = bool;}
 }
