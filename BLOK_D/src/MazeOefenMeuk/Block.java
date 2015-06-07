@@ -20,7 +20,7 @@ public class Block extends JComponent{
     
     private BufferedImage returnImage;
     private BufferedImage playerImage;
-    private BufferedImage itemImage;
+    private Item item;
     private int blokSize;
     private boolean hasItem;
     private boolean destructable;
@@ -56,8 +56,8 @@ public class Block extends JComponent{
         try {
             
             g.drawImage(returnImage, 0,0,blokSize,blokSize, this);
-            if(hasItem){
-                g.drawImage(itemImage, 0,0,blokSize,blokSize, this);
+            if(null!=Item){
+                g.drawImage(item.getImage(), 0,0,blokSize,blokSize, this);
             }
             if(hasPlayer){
                 g.drawImage(playerImage, 0,0,blokSize,blokSize, this);
@@ -67,15 +67,14 @@ public class Block extends JComponent{
             g.fillRect(0, 0, blokSize, blokSize);
             setVisible(true);
         
-        }
-        
-        
+        }           
     }
     
+
     
     @Override
     public String toString(){
-        return hasPlayer+" "+walkable+" "+destructable+" "+x+":"+y;
+        return hasPlayer+" "+walkable+" "+destructable+" "+item+" "+x+":"+y;
         
     }
     public boolean getWalkable(){return walkable;}
@@ -84,9 +83,10 @@ public class Block extends JComponent{
     public void setPlayer(boolean bool){ hasPlayer = bool;}
     public int gety(){ return x;}
     public int getx(){ return y;}
+    public void addItem(Item Item){item = Item;}
     public void setReturnImage(BufferedImage image){returnImage = image;}
-    public void setItemImage(BufferedImage image){itemImage = image;}
     public void setPlayerImage(BufferedImage image){playerImage=image;}
     public void setWalkable(boolean bool){walkable = bool;}
     public void setDestructable(boolean bool){destructable = bool;}
+
 }

@@ -6,7 +6,6 @@
 
 package MazeOefenMeuk;
 
-import MagazijnSysteem.Product;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -43,6 +42,8 @@ public class Maze {
     protected final int startY;
     protected final int endX;
     protected final int endY;
+    protected final int cheaterX;
+    protected final int cheaterY;
     protected int playerX;
     protected int playerY;
     protected boolean solution = false;
@@ -61,6 +62,8 @@ public class Maze {
        startY = y;
        playerX = x;
        playerY = y;
+       cheaterX = 2;
+       cheaterY = 2;
        endX = 12;
        endY = 6;
        height = grid.length;
@@ -91,11 +94,12 @@ public class Maze {
             {
                 boolean player = false;
                 boolean destructable = true;
-                boolean hasitem = false;
                 boolean edge = false;
+                boolean cheater = false;
                 if(row==startY&&column==startX){grid[row][column]=2;}
                 if(row==endY&&column==endX){grid[row][column]=4;}
                 if(row==playerY&&column==playerX){player=true;}
+                if(row==cheaterY&&column==cheaterX){cheater=true; }                
                 if(row==0||column==0||row==height-1||column==width-1){destructable = false; edge = true;}
                 
                 switch (grid[row][column]){
@@ -128,9 +132,14 @@ public class Maze {
                 Block blok;
                 
                 try {
-                    blok = new Block(row, column, returnImage, blockSize, hasitem, destructable, walkable, player, edge);
+                    blok = new Block(row, column, returnImage, blockSize, false, destructable, walkable, player, edge);
                     if(player==true){ blok.setPlayerImage(held);}
+                    if(cheater==true){
+                        Item cheat = new Cheater(); 
+                        blok.addItem(cheat);
+                    }
                     bloks.add(blok);
+                    System.out.println(blok);
                 } catch (Exception e) {}  
                 }
                     
