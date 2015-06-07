@@ -6,12 +6,22 @@
 
 package MazeOefenMeuk;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author Chris
  */
-public enum ITEM {
-    HELPER,
-    CHEATER,
+public abstract class Item {
     
+    protected BufferedImage image;
+    protected int x;
+    protected int y;
+    
+    
+    public abstract void use();
+    
+    public BufferedImage getImage(){
+        return image;
+    }
 }
