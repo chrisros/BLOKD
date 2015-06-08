@@ -29,7 +29,7 @@ public class Held{
     private BufferedImage heldR;
     private BufferedImage held;
     private BufferedImage pad;
-    private boolean hasBazooka = true;
+    private boolean hasBazooka = false;
     
     public Held(int x, int y, Maze doolhof)
     {
@@ -115,7 +115,8 @@ public class Held{
         
            steps++;
            doolhof.setHeld(held);
-           doolhof.movePLayer(x, y);
+           Item item = doolhof.movePLayer(x, y);
+           if (item!=null){item.use(this);}
            doolhof.repaint();
            scoreBoard.movePenalty();
            if(isAtEnd())
@@ -161,8 +162,8 @@ public class Held{
                 destructBlock.setWalkable(true);
                 destructBlock.setDestructable(false);
                 panel.repaint();
+                hasBazooka = false;
             }else{
-          System.out.println("kan niet");  
         }
             
         }
@@ -175,7 +176,9 @@ public class Held{
         scoreBoard = board;
     }
     
+    public void cheatScore(int newScore){scoreBoard.alterScore(newScore);}
     public int getX(){return x;}
     public int getY(){return y;}
     public void setPanel(JPanel p){panel = p;}
+    public void giveBazooka(){hasBazooka = true;}
 }

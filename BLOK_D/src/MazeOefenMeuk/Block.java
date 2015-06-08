@@ -20,7 +20,7 @@ public class Block extends JComponent{
     
     private BufferedImage returnImage;
     private BufferedImage playerImage;
-    private Item item;
+    private Item item = null;
     private int blokSize;
     private boolean hasItem;
     private boolean destructable;
@@ -56,7 +56,7 @@ public class Block extends JComponent{
         try {
             
             g.drawImage(returnImage, 0,0,blokSize,blokSize, this);
-            if(null!=Item){
+            if(null!=item){
                 g.drawImage(item.getImage(), 0,0,blokSize,blokSize, this);
             }
             if(hasPlayer){
@@ -74,7 +74,7 @@ public class Block extends JComponent{
     
     @Override
     public String toString(){
-        return hasPlayer+" "+walkable+" "+destructable+" "+item+" "+x+":"+y;
+        return hasPlayer+" "+walkable+" "+destructable+" kek "+" "+x+":"+y;
         
     }
     public boolean getWalkable(){return walkable;}
@@ -84,9 +84,13 @@ public class Block extends JComponent{
     public int gety(){ return x;}
     public int getx(){ return y;}
     public void addItem(Item Item){item = Item;}
+    public boolean hasItem(){return item!=null;}
+    public Item getItem(){return item;}
+    public void useItem(){ item=null;}
     public void setReturnImage(BufferedImage image){returnImage = image;}
     public void setPlayerImage(BufferedImage image){playerImage=image;}
     public void setWalkable(boolean bool){walkable = bool;}
     public void setDestructable(boolean bool){destructable = bool;}
+
 
 }

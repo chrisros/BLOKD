@@ -19,9 +19,13 @@ public abstract class Item {
     protected int y;
     
     
-    public abstract void use();
+    public abstract void use(Held speler);
     
     public BufferedImage getImage(){
         return image;
+    }
+    @Override
+    public String toString(){
+        return "ola";
     }
 }

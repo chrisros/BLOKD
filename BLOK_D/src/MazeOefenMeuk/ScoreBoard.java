@@ -43,4 +43,8 @@ public class ScoreBoard{
         frame.setScore(Score);
     }
     
+    public void alterScore(int newscore){
+        score = newscore;
+        updateScore();
+    }
 }

@@ -44,6 +44,10 @@ public class Maze {
     protected final int endY;
     protected final int cheaterX;
     protected final int cheaterY;
+    protected final int helperX;
+    protected final int helperY;
+    protected final int bazookaX;
+    protected final int bazookaY;
     protected int playerX;
     protected int playerY;
     protected boolean solution = false;
@@ -64,6 +68,10 @@ public class Maze {
        playerY = y;
        cheaterX = 2;
        cheaterY = 2;
+       helperX = 12;
+       helperY = 2;
+       bazookaX = 6;
+       bazookaY = 5;
        endX = 12;
        endY = 6;
        height = grid.length;
@@ -96,10 +104,14 @@ public class Maze {
                 boolean destructable = true;
                 boolean edge = false;
                 boolean cheater = false;
+                boolean helper = false;
+                boolean bazooka = false;
                 if(row==startY&&column==startX){grid[row][column]=2;}
                 if(row==endY&&column==endX){grid[row][column]=4;}
                 if(row==playerY&&column==playerX){player=true;}
-                if(row==cheaterY&&column==cheaterX){cheater=true; }                
+                if(row==cheaterY&&column==cheaterX){cheater=true; }  
+                if(row==helperY&&column==helperX){helper=true; } 
+                if(row==bazookaY&&column==bazookaX){bazooka=true; } 
                 if(row==0||column==0||row==height-1||column==width-1){destructable = false; edge = true;}
                 
                 switch (grid[row][column]){
@@ -130,16 +142,21 @@ public class Maze {
                 
                 
                 Block blok;
-                
+                Item item = null;
                 try {
                     blok = new Block(row, column, returnImage, blockSize, false, destructable, walkable, player, edge);
                     if(player==true){ blok.setPlayerImage(held);}
-                    if(cheater==true){
-                        Item cheat = new Cheater(); 
-                        blok.addItem(cheat);
+                    if(cheater==true){ 
+                        item = new Cheater(); 
                     }
+                    if(helper==true){ 
+                        item = new Helper();                         
+                    }
+                    if(bazooka==true){ 
+                        item = new Bazooka();                         
+                    }
+                    if(null!=item){blok.addItem(item);}
                     bloks.add(blok);
-                    System.out.println(blok);
                 } catch (Exception e) {}  
                 }
                     
@@ -180,7 +197,6 @@ public class Maze {
     public Block getFirstDestructableBlock(int x, int y, KEYVALUE direction){
         
             Block curBlok = getBlock(x, y);
-            System.out.println(curBlok);
             if(curBlok.getDestructable()){
                     return curBlok;                           
             }else if(curBlok.isEdge()){
@@ -216,20 +232,26 @@ public class Maze {
     }
         return null;
     }
-    public void movePLayer(int x, int y){
+    public Item movePLayer(int x, int y){
+        Item item = null;
          Iterator<Block> iter = bloks.iterator();
         while(iter.hasNext()){
             Block curBlok  = iter.next();
             if(curBlok.getx()==x&&curBlok.gety()==y){
                 curBlok.setPlayer(true); 
                 curBlok.setPlayerImage(held);
-                System.out.println(curBlok);
+                if(curBlok.hasItem()){
+                    item = curBlok.getItem();
+                    curBlok.useItem();
+                }
             }else{
                 curBlok.setPlayer(false);
                 curBlok.setPlayerImage(null);
+                
             } 
 
         }
+        return item;
     }
     
    public int[][] getGrid(){return grid;}
