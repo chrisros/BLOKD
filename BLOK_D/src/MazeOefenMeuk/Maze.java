@@ -67,7 +67,7 @@ public class Maze {
        playerX = x;
        playerY = y;
        cheaterX = 2;
-       cheaterY = 2;
+       cheaterY = 3;
        helperX = 12;
        helperY = 2;
        bazookaX = 6;

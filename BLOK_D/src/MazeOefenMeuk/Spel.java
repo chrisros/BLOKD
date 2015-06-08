@@ -10,7 +10,7 @@ import javax.swing.JFrame;
  * @author Chris
  */
 public class Spel {
-
+    
     //config 
 
     int x = 1;               //default start positie    
