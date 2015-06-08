@@ -127,12 +127,12 @@ public class Held{
     
     public void verkrijgSnelsteRoute() throws IOException
     {
-        doolhof.setSolution(true);
+        //doolhof.setSolution(true);
         int i = 1;
         Maze doolhof2 = new Maze(x, y);
         Solver solver = new Solver(doolhof2, i);
         MazeSolved opgelost = solver.start();
-        opgelost.setPanel(panel);
+        
         steps = opgelost.getSteps();
         while (i<4)
         {
@@ -147,11 +147,11 @@ public class Held{
                 opgelost=opgelost2;
             }
         }
-        //opgelost.paintMaze();
-        doolhof.setGrid(doolhof2.getGrid());
-        doolhof.setBlock(x, y, 1);
-        doolhof.paintMaze();
+        //doolhof.setGrid(doolhof2.getGrid());
+        //doolhof.setBlock(x, y, 1);
+        doolhof.paintSolution(opgelost);
         scoreBoard.cheatPenalty();
+        doolhof.repaint();
     }
     
     public void fire(){
@@ -163,6 +163,7 @@ public class Held{
                 destructBlock.setDestructable(false);
                 panel.repaint();
                 hasBazooka = false;
+                scoreBoard.bazooka(hasBazooka);
             }else{
         }
             
@@ -176,9 +177,9 @@ public class Held{
         scoreBoard = board;
     }
     
-    public void cheatScore(int newScore){scoreBoard.alterScore(newScore);}
+    public void cheatScore(int newScore ){scoreBoard.alterScore(newScore);}
     public int getX(){return x;}
     public int getY(){return y;}
     public void setPanel(JPanel p){panel = p;}
-    public void giveBazooka(){hasBazooka = true;}
+    public void giveBazooka(){hasBazooka = true; scoreBoard.bazooka(hasBazooka);}
 }

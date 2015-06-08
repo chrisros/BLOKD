@@ -167,6 +167,22 @@ public class Maze {
         repaint();        
     } 
     
+    public void paintSolution(Maze opgelost){
+        int[][] solvedgrid = opgelost.getGrid();
+    for (int row=0; row < height; row++) 
+        {
+            for (int column=0; column < width; column++)
+            {
+                if(solvedgrid[row][column]==7){
+                    
+                    Block blok = getBlock(column, row);
+                    
+                    blok.setReturnImage(solvedPad);
+                }
+            }
+        }
+    }
+    
     //tekent de objecten uit de arraylist opnieuw op het panel
     public void repaint(){
         
@@ -240,6 +256,7 @@ public class Maze {
             if(curBlok.getx()==x&&curBlok.gety()==y){
                 curBlok.setPlayer(true); 
                 curBlok.setPlayerImage(held);
+                curBlok.setReturnImage(pad);
                 if(curBlok.hasItem()){
                     item = curBlok.getItem();
                     curBlok.useItem();

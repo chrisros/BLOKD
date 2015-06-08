@@ -47,4 +47,8 @@ public class ScoreBoard{
         score = newscore;
         updateScore();
     }
+    public void bazooka(boolean bazooka){
+        frame.setBazooka(bazooka);
+    }
+            
 }

@@ -14,9 +14,6 @@ import java.io.IOException;
  */
 
 public class Solver {
-    // waardes van de snelste route
-    private int[][] gridFast;
-    private int stepsFast;
     
     private final int startY;
     private final int startX;

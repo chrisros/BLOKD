@@ -70,8 +70,10 @@ public class Frame extends javax.swing.JFrame {
         topPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         score = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         level = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        bazooka = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -135,7 +137,7 @@ public class Frame extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Score: ");
-        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 20));
+        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 20));
 
         score.setBackground(new java.awt.Color(255, 255, 255));
         score.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
@@ -143,21 +145,35 @@ public class Frame extends javax.swing.JFrame {
         score.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         score.setText("0000");
         score.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        topPanel.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 80, -1));
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Level: ");
-        topPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 90, -1));
+        topPanel.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 80, -1));
 
         level.setBackground(new java.awt.Color(255, 255, 255));
         level.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
         level.setForeground(new java.awt.Color(255, 255, 255));
         level.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         level.setText("0001");
-        topPanel.add(level, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 20));
+        topPanel.add(level, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, 20));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel5.setText("Level: ");
+        topPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 90, -1));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel6.setText("BAzooka");
+        topPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 110, -1));
+
+        bazooka.setBackground(new java.awt.Color(255, 255, 255));
+        bazooka.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        bazooka.setForeground(new java.awt.Color(255, 255, 255));
+        bazooka.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bazooka.setText("0");
+        topPanel.add(bazooka, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 20, -1));
 
         getContentPane().add(topPanel, java.awt.BorderLayout.PAGE_START);
 
@@ -230,11 +246,13 @@ public class Frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bazooka;
     private javax.swing.JLabel feedback;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel level;
     private javax.swing.JPanel panel;
     private javax.swing.JPanel panel2;
@@ -247,6 +265,14 @@ public class Frame extends javax.swing.JFrame {
     }
     public void setScore(String text){
         score.setText(text);
+    }
+
+    public void setBazooka(boolean hasBazooka){
+        if(hasBazooka){
+            bazooka.setText("1");
+        } else{
+            bazooka.setText("0"); 
+        }
     }
 
 }
