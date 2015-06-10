@@ -40,8 +40,8 @@ public class Maze {
     protected final int blockSize = 40;
     protected final int startX;
     protected final int startY;
-    protected final int endX;
-    protected final int endY;
+    protected int endX;
+    protected int endY;
     protected final int cheaterX;
     protected final int cheaterY;
     protected final int helperX;
@@ -285,6 +285,9 @@ public class Maze {
    public void setPanel(JPanel pan){panel = pan;}
    public void setPlayerX(int x){playerX = x;}
    public void setPlayerY(int y){playerY = y;}
+   public void setEndX(int y){endX = y;}
+   public void setEndY(int y){endY = y;}
+
    public void setSolution(boolean bool){solution=bool;}
    public void setGrid(int[][] Grid){grid = Grid;}
         
