@@ -23,7 +23,4 @@ import java.awt.image.BufferedImage;
     public BufferedImage getImage(){
         return image;
     }
-    
-    //
-
 }
