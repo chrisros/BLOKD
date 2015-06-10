@@ -93,7 +93,7 @@ public class Maze {
 
            
        
-    public void paintMaze()
+    public void createMaze()
     {  
         bloks = new ArrayList();
         for (int row=0; row < height; row++) 

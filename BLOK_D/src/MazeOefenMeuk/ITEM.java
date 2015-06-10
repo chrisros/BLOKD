@@ -24,8 +24,5 @@ public abstract class Item {
     public BufferedImage getImage(){
         return image;
     }
-    @Override
-    public String toString(){
-        return "ola";
-    }
+
 }
