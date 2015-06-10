@@ -283,8 +283,9 @@ public class Maze {
    public int getPlayerX(){return playerX;}
    public int getPlayerY(){return playerY;}
    public void setPanel(JPanel pan){panel = pan;}
-   public void setPlayerX(int x){playerX = x;}
-   public void setPlayerY(int y){playerY = y;}
+   
+   
+
    public void setSolution(boolean bool){solution=bool;}
    public void setGrid(int[][] Grid){grid = Grid;}
         

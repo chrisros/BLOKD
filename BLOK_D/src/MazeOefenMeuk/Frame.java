@@ -6,14 +6,12 @@
 
 package MazeOefenMeuk;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,21 +22,22 @@ public class Frame extends javax.swing.JFrame {
     Maze doolhof;
     MazeSolved opgelost;
     Held speler;
-    BufferedImage splashScreen;
-    public Frame(Maze doolhof, MazeSolved opgelost, Held speler ) {
+    BufferedImage frameIcon;
+    public Frame() {
+        initComponents();     
         
-        try {splashScreen = ImageIO.read(new File("src/images/heldRight.png")); } catch (Exception e) {}
-        
-        initComponents();
+        try {frameIcon = ImageIO.read(new File("src/images/heldRight.png")); } catch (IOException e) {}       
         setVisible(true);
         setTitle("EscApe The Game");
         setIconImage(null);
         setResizable(false); 
         setFocusable(true); 
-        setIconImage(splashScreen);
+        setIconImage(frameIcon);
         
+    }
+    
+    public void startGame(Maze doolhof, Held speler ){
         this.doolhof = doolhof;
-        this.opgelost = opgelost;
         this.speler = speler;
         speler.setPanel(panel);
         panel.setFocusable(true);
@@ -46,7 +45,7 @@ public class Frame extends javax.swing.JFrame {
         panel.addKeyListener(checkKey);
         
         doolhof.setPanel(panel);
-        opgelost.setPanel(panel);
+        
     }
     
     public void setPanelGrid(int w, int h){
@@ -100,7 +99,7 @@ public class Frame extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 0, 255));
         jButton1.setFont(new java.awt.Font("P22 Constructivist", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 0));
-        jButton1.setText("Show Maze");
+        jButton1.setText("restart level");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

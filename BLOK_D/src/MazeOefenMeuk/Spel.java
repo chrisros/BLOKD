@@ -4,6 +4,7 @@
 package MazeOefenMeuk;
 
 import java.io.IOException;
+
 import javax.swing.JFrame;
 
 /**
@@ -21,39 +22,32 @@ public class Spel {
     Maze doolhof;
     Held speler;
     ScoreBoard scoreboard;
-
+    
+    
+    
+    public void constructFrame(){
+        frame = new Frame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setPanelGrid(1, 1); 
+        frame.setLocationRelativeTo(null);
+    }
+    
     public void constructLevel() throws IOException {
-
 //  Level data, creates new Maze object with the start and finish // 
-        int i = 1;
         doolhof = new Maze(x, y);
-
-        Solver solver = new Solver(doolhof, i);
-        MazeSolved opgelost = solver.start();
-        //verplaats dit naar solver!!!!!!!!!!
-        steps = opgelost.getSteps();
-        while (i < 4) {
-            i++;
-            Maze doolhof2 = new Maze(x, y);
-            Solver solver2 = new Solver(doolhof2, i);
-            MazeSolved opgelost2 = solver2.start();
-            int curSteps = opgelost2.getSteps();
-
-            if (curSteps < steps && curSteps > 0) {
-                steps = curSteps;
-                opgelost = opgelost2;
-            }
-        }
+        
 
     //================================================================//
         speler = new Held(1, 1, doolhof);
-        frame = new Frame(doolhof, opgelost, speler);
+        frame.startGame(doolhof, speler);
+        frame.setSize(doolhof.getWidth() * blockSize, (doolhof.getHeight() * blockSize) + 90);
+        frame.setPanelGrid(doolhof.getWidth(), doolhof.getHeight());   
+        doolhof.createMaze();
+        
         scoreboard = new ScoreBoard(frame, 1000);
         speler.setScoreBoard(scoreboard);
         
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(doolhof.getWidth() * blockSize, (doolhof.getHeight() * blockSize) + 90);
-        frame.setPanelGrid(doolhof.getWidth(), doolhof.getHeight());
+       
 
        
     //================================================================//    
@@ -76,3 +70,24 @@ public class Spel {
         this.y = y;
     }
 }
+
+
+//        int i = 1;
+//        
+//
+//        Solver solver = new Solver(doolhof, i);
+//        MazeSolved opgelost = solver.start();
+//        //verplaats dit naar solver!!!!!!!!!!
+//        steps = opgelost.getSteps();
+//        while (i < 4) {
+//            i++;
+//            Maze doolhof2 = new Maze(x, y);
+//            Solver solver2 = new Solver(doolhof2, i);
+//            MazeSolved opgelost2 = solver2.start();
+//            int curSteps = opgelost2.getSteps();
+//
+//            if (curSteps < steps && curSteps > 0) {
+//                steps = curSteps;
+//                opgelost = opgelost2;
+//            }
+//        }
