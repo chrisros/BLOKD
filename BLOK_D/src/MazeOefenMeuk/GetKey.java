@@ -17,19 +17,21 @@ public class GetKey implements KeyListener
     //array voor het bewaren van de laatste 4 ingetoetste toetsen
     //hiermee kunnen cheatcodes worden herkend
     private int[] c = new int[4];
-    
+    private int[] h = new int[4];
     private final Held speler;
     
     public GetKey(Held speler){
         this.speler = speler;
     }
+    //slaat de laatste 4 toetsanslaagen op
+    private void cacheUserInput(int code){
+        c[3]=c[2]; c[2]=c[1]; c[1]=c[0]; c[0] = code;
+    }
     
-    //kijkt of er een het woord 'help' word getyped
-    private boolean cheatCode(int code)
+    //kijkt of het woord 'help' wordt getyped   
+    private boolean helperCheatCode()
     {
         boolean cheated = false;
-        
-        c[3]=c[2]; c[2]=c[1]; c[1]=c[0]; c[0] = code;
         //     H       E       L       P
         if(c[3]==72&&c[2]==69&&c[1]==76&&c[0]==80)
         {
@@ -37,14 +39,25 @@ public class GetKey implements KeyListener
         } 
         return cheated;
     }
-
+    //kijkt of het woord 'boom' wordt getyped
+    private boolean bazookaCheatCode()
+    {
+        boolean cheated = false;
+        //     B       O       O       M
+        if(c[3]==66&&c[2]==79&&c[1]==79&&c[0]==77)
+        {
+            cheated = true;
+        } 
+        return cheated;
+    }
 
     @Override
     public void keyPressed(KeyEvent e) 
     {
         
         int keyCode = e.getKeyCode();
-      
+        cacheUserInput(keyCode);
+        
         switch(keyCode)
         {
             case 32:
@@ -66,14 +79,19 @@ public class GetKey implements KeyListener
                 speler.move(KEYVALUE.DOWN);
                 break;
         }
-        if(cheatCode(keyCode))
-        {
+        
+        if(helperCheatCode())
+        {              
             try {
                 speler.verkrijgSnelsteRoute();
             } catch (IOException ex) {
                 Logger.getLogger(GetKey.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }  
+        } 
+        if(bazookaCheatCode())
+        {         
+            speler.giveBazooka();
+        }    
     }
     
     //vereiste methodes voor het implementeren van KeyListener java class

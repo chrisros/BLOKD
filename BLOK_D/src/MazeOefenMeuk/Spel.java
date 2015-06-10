@@ -48,27 +48,18 @@ public class Spel {
     //================================================================//
         speler = new Held(1, 1, doolhof);
         frame = new Frame(doolhof, opgelost, speler);
-
-        setScoreBoard();
+        scoreboard = new ScoreBoard(frame, 1000);
+        speler.setScoreBoard(scoreboard);
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(doolhof.getWidth() * blockSize, (doolhof.getHeight() * blockSize) + 90);
         frame.setPanelGrid(doolhof.getWidth(), doolhof.getHeight());
 
-        String feedback;
-        if (opgelost.isDone()) {
-            feedback = "Minimale hoeveelheid stappen = " + opgelost.getSteps();
-        } else {
-            feedback = "Geen oplossing";
-        }
-        frame.setFeedback(feedback);
+       
     //================================================================//    
 
     }
 
-    public void setScoreBoard() {
-        scoreboard = new ScoreBoard(frame, 1000);
-        speler.setScoreBoard(scoreboard);
-    }
 
     public Frame getFrame() {
         return frame;

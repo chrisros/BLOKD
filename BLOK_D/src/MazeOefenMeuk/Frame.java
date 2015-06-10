@@ -65,7 +65,6 @@ public class Frame extends javax.swing.JFrame {
         panel = new javax.swing.JPanel();
         panel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         feedback = new javax.swing.JLabel();
         topPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -108,17 +107,6 @@ public class Frame extends javax.swing.JFrame {
             }
         });
         panel2.add(jButton1);
-
-        jButton2.setBackground(new java.awt.Color(0, 0, 255));
-        jButton2.setFont(new java.awt.Font("P22 Constructivist", 0, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 0));
-        jButton2.setText("Solve Maze");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        panel2.add(jButton2);
 
         feedback.setBackground(new java.awt.Color(255, 255, 51));
         feedback.setFont(new java.awt.Font("P22 Constructivist", 0, 24)); // NOI18N
@@ -190,17 +178,6 @@ public class Frame extends javax.swing.JFrame {
             
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            //button clicked > teken de oplossing:
-            speler.verkrijgSnelsteRoute();
-            
-            
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Er is een kritische fout opgetreden, graag de applicatie opnieuw opstarten"); 
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         
     }//GEN-LAST:event_formKeyPressed
@@ -249,7 +226,6 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JLabel bazooka;
     private javax.swing.JLabel feedback;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
