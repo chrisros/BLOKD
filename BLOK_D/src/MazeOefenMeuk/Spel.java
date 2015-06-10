@@ -17,6 +17,14 @@ public class Spel {
     int x = 1;               //default start positie    
     int y = 1;               //default start positie
     int blockSize = 40;     //grootte van elke block ven het grid
+    protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                             {0,2,1,1,1,0,1,0,0,1,1,0,1,0},
+                             {0,0,1,0,1,0,1,1,1,1,1,1,1,0},       
+                             {0,0,0,1,1,1,1,0,0,1,0,1,1,0},      
+                             {0,1,0,1,1,0,0,0,0,1,1,0,1,0},
+                             {0,1,0,0,1,0,1,0,0,1,0,0,1,0},
+                             {0,1,1,1,1,1,1,0,0,1,1,1,4,0}, 
+                             {0,0,0,0,0,0,0,0,0,0,0,0,0,0}};  
     int steps;
     Frame frame;
     Maze doolhof;
@@ -35,7 +43,12 @@ public class Spel {
     public void constructLevel() throws IOException {
 //  Level data, creates new Maze object with the start and finish // 
         doolhof = new Maze(x, y);
-        
+        doolhof.setSpel(this);
+        doolhof.setGrid(grid);
+        doolhof.setBazooka(4, 5);
+        doolhof.setCheater(6, 1);
+        doolhof.setEnd(12, 6);
+        doolhof.setHelper(1, 4);
 
     //================================================================//
         speler = new Held(1, 1, doolhof);
@@ -53,6 +66,13 @@ public class Spel {
     //================================================================//    
 
     }
+    public void restart() throws IOException{
+        frame.dispose();
+        constructFrame();
+        constructLevel();
+       
+    }
+        
 
 
     public Frame getFrame() {

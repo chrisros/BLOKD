@@ -22,7 +22,6 @@ public class Block extends JComponent{
     private BufferedImage playerImage;
     private Item item = null;
     private int blokSize;
-    private boolean hasItem;
     private boolean destructable;
     private boolean walkable;
     private boolean isEdge;
@@ -31,12 +30,11 @@ public class Block extends JComponent{
     private boolean hasPlayer;
 
     
-    public Block(int X, int Y, BufferedImage image, int bS, boolean item, boolean destruct, boolean Walkable, boolean player, boolean edge) throws IOException{
+    public Block(int X, int Y, BufferedImage image, int bS, boolean destruct, boolean Walkable, boolean player, boolean edge) throws IOException{
         
         try {
             returnImage  = image;   
             blokSize     = bS;
-            hasItem      = item;
             destructable = destruct;
             x            = X;
             y            = Y;

@@ -37,17 +37,18 @@ public class Maze {
     
     
     protected  JPanel panel; 
+    private Spel spel;
     protected final int blockSize = 40;
     protected final int startX;
     protected final int startY;
-    protected final int endX;
-    protected final int endY;
-    protected final int cheaterX;
-    protected final int cheaterY;
-    protected final int helperX;
-    protected final int helperY;
-    protected final int bazookaX;
-    protected final int bazookaY;
+    protected int endX;
+    protected int endY;
+    protected int cheaterX;
+    protected int cheaterY;
+    protected int helperX;
+    protected int helperY;
+    protected int bazookaX;
+    protected int bazookaY;
     protected int playerX;
     protected int playerY;
     protected boolean solution = false;
@@ -66,16 +67,6 @@ public class Maze {
        startY = y;
        playerX = x;
        playerY = y;
-       cheaterX = 2;
-       cheaterY = 3;
-       helperX = 12;
-       helperY = 2;
-       bazookaX = 6;
-       bazookaY = 5;
-       endX = 12;
-       endY = 6;
-       height = grid.length;
-       width = grid[0].length;
 
        
         try {
@@ -144,7 +135,7 @@ public class Maze {
                 Block blok;
                 Item item = null;
                 try {
-                    blok = new Block(row, column, returnImage, blockSize, false, destructable, walkable, player, edge);
+                    blok = new Block(row, column, returnImage, blockSize, destructable, walkable, player, edge);
                     if(player==true){ blok.setPlayerImage(held);}
                     if(cheater==true){ 
                         item = new Cheater(); 
@@ -249,6 +240,8 @@ public class Maze {
         return null;
     }
     public Item movePLayer(int x, int y){
+        playerX = x;
+        playerY = y;
         Item item = null;
          Iterator<Block> iter = bloks.iterator();
         while(iter.hasNext()){
@@ -271,6 +264,12 @@ public class Maze {
         return item;
     }
     
+    public void restartLevel() throws IOException{
+        
+        spel.restart();
+        
+    }
+    
    public int[][] getGrid(){return grid;}
    public void setHeld(BufferedImage Held){held = Held;}
    public void setBlock(int x, int y, int value){grid[y][x]=value;} 
@@ -283,11 +282,15 @@ public class Maze {
    public int getPlayerX(){return playerX;}
    public int getPlayerY(){return playerY;}
    public void setPanel(JPanel pan){panel = pan;}
-   
-   
-
    public void setSolution(boolean bool){solution=bool;}
-   public void setGrid(int[][] Grid){grid = Grid;}
-        
-
+   public void setSpel(Spel spel){this.spel = spel;} 
+       public void setCheater(int x, int y){cheaterX = x; cheaterY = y;}
+       public void setHelper(int x, int y){helperX = x; helperY = y;}
+       public void setBazooka(int x, int y){bazookaX = x; bazookaY = y;}
+       public void setEnd(int x, int y){endX = x; endY = y;}
+       public void setGrid(int[][] level){
+           grid = level;
+           height = grid.length;
+           width = grid[0].length;
+       }
 }

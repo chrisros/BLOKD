@@ -129,7 +129,7 @@ public class Held{
     {
         //doolhof.setSolution(true);
         int i = 1;
-        Maze doolhof2 = new Maze(x, y);
+        Maze doolhof2 = doolhof;
         Solver solver = new Solver(doolhof2, i);
         MazeSolved opgelost = solver.start();
         
