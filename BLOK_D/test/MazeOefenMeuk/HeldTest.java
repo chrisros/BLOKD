@@ -72,8 +72,7 @@ public class HeldTest {
 
         //doolhof = new Maze(x, y);
         Held instance = new Held(1, 1, doolhof);
-        instance.move(KEYVALUE.DOWN);
-
+        instance.rotate(KEYVALUE.DOWN);
         int expResult = 1;
         int result = instance.getY();
         assertEquals(expResult, result);
@@ -86,7 +85,7 @@ public class HeldTest {
 
         //doolhof = new Maze(x, y);
         Held instance = new Held(1, 1, doolhof);
-        instance.move(KEYVALUE.UP);
+        instance.rotate(KEYVALUE.UP);
 
         int expResult = 1;
         int result = instance.getY();
@@ -100,7 +99,7 @@ public class HeldTest {
 
         //doolhof = new Maze(x, y);
         Held instance = new Held(1, 1, doolhof);
-        instance.move(KEYVALUE.LEFT);
+        instance.rotate(KEYVALUE.LEFT);
         int expResult = 1;
         int result = instance.getX();
         assertEquals(expResult, result);
@@ -113,7 +112,7 @@ public class HeldTest {
 
  
         Held instance = new Held(1, 1, doolhof);
-        instance.move(KEYVALUE.RIGHT);   
+        instance.rotate(KEYVALUE.RIGHT);   
         int expResult = 1;
         int result = instance.getX();
         assertEquals(expResult, result);
@@ -128,7 +127,7 @@ public class HeldTest {
         y =4;
         
         Held instance = new Held(x, y, doolhof);
-        instance.move(KEYVALUE.LEFT);
+        instance.rotate(KEYVALUE.LEFT);
         int expResult = 3;
         int result = instance.getX();
         assertEquals(expResult, result);
@@ -144,7 +143,7 @@ public class HeldTest {
         y =4;
         
         Held instance = new Held(x, y, doolhof);
-        instance.move(KEYVALUE.RIGHT);
+        instance.rotate(KEYVALUE.RIGHT);
         int expResult = 5;
         int result = instance.getX();
         assertEquals(expResult, result);
@@ -160,7 +159,7 @@ public class HeldTest {
         y =4;
         
         Held instance = new Held(x, y, doolhof);
-        instance.move(KEYVALUE.UP);
+        instance.rotate(KEYVALUE.UP);
         int expResult = 3;
         int result = instance.getY();
         assertEquals(expResult, result);
@@ -176,6 +175,7 @@ public class HeldTest {
         y =4;
         
         Held instance = new Held(x, y, doolhof);
+        //instance.rotate(KEYVALUE.DOWN);
         instance.move(KEYVALUE.DOWN);
         int expResult = 5;
         int result = instance.getY();
