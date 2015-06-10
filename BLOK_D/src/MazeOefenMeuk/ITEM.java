@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package MazeOefenMeuk;
 
 import java.awt.image.BufferedImage;
 
 /**
  *
- * @author Chris
+ * @author Aaik
  */
-public abstract class Item {
+    public abstract class Item {
     
     protected BufferedImage image;
     protected int x;
@@ -24,5 +23,7 @@ public abstract class Item {
     public BufferedImage getImage(){
         return image;
     }
+    
+    //
 
 }
