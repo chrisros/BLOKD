@@ -108,7 +108,6 @@ public class Held{
                     direction = KEYVALUE.DOWN;
                     break;
              }
-            panel.updateUI();
        }
     
     private void doMove(){

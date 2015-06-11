@@ -127,8 +127,8 @@ public class HeldTest {
         y =4;
         
         Held instance = new Held(x, y, doolhof);
-        instance.rotate(KEYVALUE.LEFT);
-        int expResult = 3;
+        //instance.rotate(KEYVALUE.LEFT);
+        int expResult = 4;
         int result = instance.getX();
         assertEquals(expResult, result);
         System.out.println("Test geslaagd, leftmove");
