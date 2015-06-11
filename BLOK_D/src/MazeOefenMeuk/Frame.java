@@ -47,6 +47,7 @@ public class Frame extends javax.swing.JFrame {
         doolhof.setPanel(panel);
         
     }
+   
     
     public void setPanelGrid(int w, int h){
         panel.setLayout(new GridLayout(h,w));

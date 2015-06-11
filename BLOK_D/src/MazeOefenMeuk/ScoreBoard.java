@@ -50,5 +50,8 @@ public class ScoreBoard{
     public void bazooka(boolean bazooka){
         frame.setBazooka(bazooka);
     }
+    public int getScore(){
+        return score;
+    }
             
 }

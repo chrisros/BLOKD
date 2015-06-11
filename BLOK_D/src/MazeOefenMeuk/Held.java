@@ -120,7 +120,7 @@ public class Held{
            scoreBoard.movePenalty();
            if(isAtEnd())
            {
-                JOptionPane.showMessageDialog(null, "Het einde is bereikt");   
+                doolhof.finishGame();  
            }
         }
     

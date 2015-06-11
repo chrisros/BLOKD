@@ -266,8 +266,10 @@ public class Maze {
     
     public void restartLevel() throws IOException{
         
-        spel.restart();
-        
+        spel.start();
+    }
+    public void finishGame() throws IOException{
+        spel.finish();
     }
     
    public int[][] getGrid(){return grid;}
