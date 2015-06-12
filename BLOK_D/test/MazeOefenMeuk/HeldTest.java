@@ -5,7 +5,6 @@
  */
 package MazeOefenMeuk;
 
-
 import java.io.IOException;
 
 import org.junit.After;
@@ -44,33 +43,31 @@ public class HeldTest {
      * Test of move method, of class Held.
      */
     private Maze doolhof;
-    int x = 1;
-    int y = 1;
-    protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                             {0,1,0,1,1,1,1,1,1,1,1,1,1,0},
-                             {0,0,0,1,1,1,1,1,1,1,1,1,1,0},       
-                             {0,1,1,1,1,1,1,1,1,1,1,1,1,0},      
-                             {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
-                             {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
-                             {0,1,1,1,1,1,1,1,1,1,1,1,1,0}, 
-                             {0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
+    int x = 4;
+    int y = 4;
+    protected int[][] grid = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+    {0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+    {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+    {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+    {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+    {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
     Frame frame;
-    
+
     public void runTheGame() throws IOException {
 
         Spel game = new Spel();
-        game.constructLevel();
-        game.
         frame = game.getFrame();
         doolhof = game.getMaze();
-        doolhof.setGrid(grid);
+//        doolhof.setGrid(grid);
     }
-    
+
     @Test
     public void testMoveDown() throws IOException {
         runTheGame();
-
-        //doolhof = new Maze(x, y);
+        x = 1;
+        y = 1;
         Held instance = new Held(1, 1, doolhof);
         instance.rotate(KEYVALUE.DOWN);
         int expResult = 1;
@@ -82,8 +79,8 @@ public class HeldTest {
     @Test
     public void testMoveUp() throws IOException {
         runTheGame();
-
-        //doolhof = new Maze(x, y);
+        x = 1;
+        y = 1;
         Held instance = new Held(1, 1, doolhof);
         instance.rotate(KEYVALUE.UP);
 
@@ -96,8 +93,8 @@ public class HeldTest {
     @Test
     public void testMoveLeft() throws IOException {
         runTheGame();
-
-        //doolhof = new Maze(x, y);
+        x = 1;
+        y = 1;
         Held instance = new Held(1, 1, doolhof);
         instance.rotate(KEYVALUE.LEFT);
         int expResult = 1;
@@ -109,10 +106,10 @@ public class HeldTest {
     @Test
     public void testMoveRight() throws IOException {
         runTheGame();
-
- 
+        x = 1;
+        y = 1;
         Held instance = new Held(1, 1, doolhof);
-        instance.rotate(KEYVALUE.RIGHT);   
+        instance.rotate(KEYVALUE.RIGHT);
         int expResult = 1;
         int result = instance.getX();
         assertEquals(expResult, result);
@@ -122,62 +119,47 @@ public class HeldTest {
     @Test
     public void testMoveLEFTWEL() throws IOException {
         runTheGame();
- 
-        x =4;
-        y =4;
-        
+
         Held instance = new Held(x, y, doolhof);
-        //instance.rotate(KEYVALUE.LEFT);
+        instance.rotate(KEYVALUE.LEFT);
         int expResult = 4;
         int result = instance.getX();
         assertEquals(expResult, result);
         System.out.println("Test geslaagd, leftmove");
     }
-    
-    
+
     @Test
     public void testMoveRightWEL() throws IOException {
         runTheGame();
- 
-        x =4;
-        y =4;
-        
+
         Held instance = new Held(x, y, doolhof);
         instance.rotate(KEYVALUE.RIGHT);
-        int expResult = 5;
+        int expResult = 4;
         int result = instance.getX();
         assertEquals(expResult, result);
         System.out.println("Test geslaagd, rightMOve");
     }
-    
-    
+
     @Test
     public void testMoveUpWEL() throws IOException {
         runTheGame();
- 
-        x =4;
-        y =4;
-        
+
         Held instance = new Held(x, y, doolhof);
         instance.rotate(KEYVALUE.UP);
-        int expResult = 3;
+        int expResult = 4;
         int result = instance.getY();
         assertEquals(expResult, result);
         System.out.println("Test geslaagd, upMove");
     }
-    
-    
+
     @Test
     public void testMoveDownWEL() throws IOException {
         runTheGame();
- 
-        x =4;
-        y =4;
-        
+
         Held instance = new Held(x, y, doolhof);
-        //instance.rotate(KEYVALUE.DOWN);
-        instance.move(KEYVALUE.DOWN);
-        int expResult = 5;
+        instance.rotate(KEYVALUE.DOWN);
+
+        int expResult = 4;
         int result = instance.getY();
         assertEquals(expResult, result);
         System.out.println("Test geslaagd, downMove");

@@ -47,7 +47,7 @@ public class Held{
         } catch(IOException ex){}
     }
     
-    public void move(KEYVALUE key)
+    public void move(KEYVALUE key) throws IOException
     {
         
         switch(key)
@@ -110,7 +110,7 @@ public class Held{
              }
        }
     
-    private void doMove(){
+    private void doMove() throws IOException{
         
            steps++;
            doolhof.setHeld(held);

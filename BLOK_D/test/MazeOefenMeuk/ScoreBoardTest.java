@@ -59,7 +59,7 @@ public class ScoreBoardTest {
         solver = new Solver(doolhof, i);
         opgelost = solver.start();
         speler = new Held(x, y, doolhof);
-        frame = new Frame(doolhof, opgelost, speler);
+//        frame = new Frame(doolhof, opgelost, speler);
 
     }
 
