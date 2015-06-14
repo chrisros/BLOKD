@@ -17,7 +17,6 @@ public class GetKey implements KeyListener
     //array voor het bewaren van de laatste 4 ingetoetste toetsen
     //hiermee kunnen cheatcodes worden herkend
     private int[] c = new int[4];
-    private int[] h = new int[4];
     private final Held speler;
     
     public GetKey(Held speler){
@@ -55,43 +54,47 @@ public class GetKey implements KeyListener
     public void keyPressed(KeyEvent e) 
     {
         
-        int keyCode = e.getKeyCode();
-        cacheUserInput(keyCode);
-        
-        switch(keyCode)
-        {
-            case 32:
-                speler.fire();
-                break;
-            case 37:
-                speler.move(KEYVALUE.LEFT);
-                break;
-                
-            case 38:
-                speler.move(KEYVALUE.UP);
-                break;
-                
-            case 39:
-                speler.move(KEYVALUE.RIGHT);
-                break;
-                
-            case 40:
-                speler.move(KEYVALUE.DOWN);
-                break;
-        }
-        
-        if(helperCheatCode())
-        {              
-            try {
-                speler.verkrijgSnelsteRoute();
-            } catch (IOException ex) {
-                Logger.getLogger(GetKey.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            int keyCode = e.getKeyCode();
+            cacheUserInput(keyCode);
+            
+            switch(keyCode)
+            {
+                case 32:
+                    speler.fire();
+                    break;
+                case 37:
+                    speler.move(KEYVALUE.LEFT);
+                    break;
+                    
+                case 38:
+                    speler.move(KEYVALUE.UP);
+                    break;
+                    
+                case 39:
+                    speler.move(KEYVALUE.RIGHT);
+                    break;
+                    
+                case 40:
+                    speler.move(KEYVALUE.DOWN);
+                    break;
             }
-        } 
-        if(bazookaCheatCode())
-        {         
-            speler.giveBazooka();
-        }    
+            
+            if(helperCheatCode())
+            {
+                try {
+                    speler.verkrijgSnelsteRoute();    
+                } catch (IOException ex) {
+                    Logger.getLogger(GetKey.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(bazookaCheatCode())
+            {
+                speler.giveBazooka();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(GetKey.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     //vereiste methodes voor het implementeren van KeyListener java class

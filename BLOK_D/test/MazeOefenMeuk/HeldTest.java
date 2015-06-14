@@ -25,6 +25,7 @@ public class HeldTest {
 
     @BeforeClass
     public static void setUpClass() {
+        
     }
 
     @AfterClass
@@ -33,6 +34,10 @@ public class HeldTest {
 
     @Before
     public void setUp() {
+        Spel game = new Spel();
+        frame = game.getFrame();
+        doolhof = game.getMaze();
+//       doolhof.setGrid(grid);
     }
 
     @After
@@ -55,17 +60,10 @@ public class HeldTest {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
     Frame frame;
 
-    public void runTheGame() throws IOException {
-
-        Spel game = new Spel();
-        frame = game.getFrame();
-        doolhof = game.getMaze();
-//        doolhof.setGrid(grid);
-    }
 
     @Test
     public void testMoveDown() throws IOException {
-        runTheGame();
+        
         x = 1;
         y = 1;
         Held instance = new Held(1, 1, doolhof);
@@ -78,7 +76,7 @@ public class HeldTest {
 
     @Test
     public void testMoveUp() throws IOException {
-        runTheGame();
+        
         x = 1;
         y = 1;
         Held instance = new Held(1, 1, doolhof);
@@ -92,7 +90,7 @@ public class HeldTest {
 
     @Test
     public void testMoveLeft() throws IOException {
-        runTheGame();
+        
         x = 1;
         y = 1;
         Held instance = new Held(1, 1, doolhof);
@@ -105,7 +103,7 @@ public class HeldTest {
 
     @Test
     public void testMoveRight() throws IOException {
-        runTheGame();
+        
         x = 1;
         y = 1;
         Held instance = new Held(1, 1, doolhof);
@@ -118,7 +116,7 @@ public class HeldTest {
 
     @Test
     public void testMoveLEFTWEL() throws IOException {
-        runTheGame();
+        
 
         Held instance = new Held(x, y, doolhof);
         instance.rotate(KEYVALUE.LEFT);
@@ -130,7 +128,7 @@ public class HeldTest {
 
     @Test
     public void testMoveRightWEL() throws IOException {
-        runTheGame();
+        
 
         Held instance = new Held(x, y, doolhof);
         instance.rotate(KEYVALUE.RIGHT);
@@ -142,7 +140,7 @@ public class HeldTest {
 
     @Test
     public void testMoveUpWEL() throws IOException {
-        runTheGame();
+        
 
         Held instance = new Held(x, y, doolhof);
         instance.rotate(KEYVALUE.UP);
@@ -154,7 +152,7 @@ public class HeldTest {
 
     @Test
     public void testMoveDownWEL() throws IOException {
-        runTheGame();
+        
 
         Held instance = new Held(x, y, doolhof);
         instance.rotate(KEYVALUE.DOWN);
