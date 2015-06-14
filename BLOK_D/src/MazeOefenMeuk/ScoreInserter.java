@@ -18,17 +18,10 @@ import javax.swing.JOptionPane;
  *
  * @author Aaik
  */
-public class ScoreDatabase {
+public class ScoreInserter {
 
-    public static void main(String[] args) {
 
-    }
-
-    public ScoreDatabase() {
-
-    }
-
-    public void insertScore(String naam, int stappen, int score) {
+    ScoreInserter(String naam, int stappen, int score) {
         try {
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -49,5 +42,7 @@ public class ScoreDatabase {
         } catch (Exception e) {
         }
     }
+
+
     
 }
