@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -30,6 +29,7 @@ public class Held{
     private BufferedImage held;
     private BufferedImage pad;
     private boolean hasBazooka = false;
+    private boolean hasCape = false;
     
     public Held(int x, int y, Maze doolhof)
     {
@@ -55,7 +55,7 @@ public class Held{
             case LEFT:
                 x--; 
                 rotate(KEYVALUE.LEFT);
-                if(!doolhof.isBlockWalkable(x, y)){
+                if(!isBlockAccesible()){
                     x++;
                 }
                 
@@ -63,7 +63,7 @@ public class Held{
             case RIGHT:
                 x++; 
                 rotate(KEYVALUE.RIGHT);
-                if(!doolhof.isBlockWalkable(x, y)){
+                if(!isBlockAccesible()){
                    x--; 
                 }
                 
@@ -71,7 +71,7 @@ public class Held{
             case UP:
                 y--; 
                 rotate(KEYVALUE.UP);
-                if(!doolhof.isBlockWalkable(x, y)){                    
+                if(!isBlockAccesible()){                    
                     y++;
                 }
                 
@@ -79,12 +79,23 @@ public class Held{
             case DOWN:
                 y++; 
                 rotate(KEYVALUE.DOWN);
-                if(!doolhof.isBlockWalkable(x, y)){
+                if(!isBlockAccesible()){
                     y--;               
                 }
                 break;
         }
         doMove();
+    }
+    
+    private boolean isBlockAccesible(){
+        boolean walkable = doolhof.isBlockWalkable(x, y);
+        boolean destructable = false;
+        if(doolhof.getFirstDestructableBlock(x, y, direction)!=null){destructable = true;}
+        if(hasCape&&(walkable||destructable)){
+            return true;
+        }else{
+            return walkable;
+        }
     }
     
            public void rotate(KEYVALUE key) 
@@ -114,7 +125,7 @@ public class Held{
         
            steps++;
            doolhof.setHeld(held);
-           Item item = doolhof.movePLayer(x, y);
+           Item item = doolhof.movePLayer(x, y, hasCape);
            if (item!=null){item.use(this);}
            doolhof.repaint();
            scoreBoard.movePenalty();
@@ -181,4 +192,5 @@ public class Held{
     public int getY(){return y;}
     public void setPanel(JPanel p){panel = p;}
     public void giveBazooka(){hasBazooka = true; scoreBoard.bazooka(hasBazooka);}
+    public void giveCape(){hasCape = true;}
 }

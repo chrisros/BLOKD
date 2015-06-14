@@ -69,6 +69,11 @@ public class LevelLoader {
                     X = Integer.parseInt(inFile1.next());
                     Y = Integer.parseInt(inFile1.next());
                     maze.setHelper(X, Y);
+                } 
+                if (row.equals("<cape>")) {
+                    X = Integer.parseInt(inFile1.next());
+                    Y = Integer.parseInt(inFile1.next());
+                    maze.setCape(X, Y);
                 }
 
                 if (row.equals("<grid>")) {

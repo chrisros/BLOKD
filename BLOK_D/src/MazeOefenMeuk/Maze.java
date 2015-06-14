@@ -39,27 +39,15 @@ public class Maze {
     protected  JPanel panel; 
     private Spel spel;
     protected final int blockSize = 40;
-    protected final int startX;
-    protected final int startY;
-    protected int endX;
-    protected int endY;
-    protected int cheaterX;
-    protected int cheaterY;
-    protected int helperX;
-    protected int helperY;
-    protected int bazookaX;
-    protected int bazookaY;
-    protected int playerX;
-    protected int playerY;
+    protected final int startX, startY;
+    protected int endX, endY;
+    protected int cheaterX, cheaterY;
+    protected int helperX, helperY;
+    protected int bazookaX, bazookaY;
+    protected int capeX, capeY;
+    protected int playerX, playerY;
     protected boolean solution = false;
-    protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                             {0,2,1,1,1,0,1,0,0,1,1,0,1,0},
-                             {0,0,1,0,1,0,1,1,1,1,1,1,1,0},       
-                             {0,0,0,1,1,1,1,0,0,1,0,1,1,0},      
-                             {0,1,0,1,1,0,0,0,0,1,1,0,1,0},
-                             {0,1,0,0,1,0,1,0,0,1,0,0,1,0},
-                             {0,1,1,1,1,1,1,0,0,1,1,1,4,0}, 
-                             {0,0,0,0,0,0,0,0,0,0,0,0,0,0}};  
+    protected int[][] grid ;
     ArrayList<Block> bloks;
     
    public Maze(int x, int y){
@@ -97,13 +85,16 @@ public class Maze {
                 boolean cheater = false;
                 boolean helper = false;
                 boolean bazooka = false;
+                boolean cape = false;
+                if(row==0||column==0||row==height-1||column==width-1){destructable = false; edge = true;} else{
                 if(row==startY&&column==startX){grid[row][column]=2;}
                 if(row==endY&&column==endX){grid[row][column]=4;}
                 if(row==playerY&&column==playerX){player=true;}
                 if(row==cheaterY&&column==cheaterX){cheater=true; }  
                 if(row==helperY&&column==helperX){helper=true; } 
-                if(row==bazookaY&&column==bazookaX){bazooka=true; } 
-                if(row==0||column==0||row==height-1||column==width-1){destructable = false; edge = true;}
+                if(row==bazookaY&&column==bazookaX){bazooka=true; }
+                if(row==capeY&&column==capeX){cape=true; }
+                }
                 
                 switch (grid[row][column]){
                     
@@ -145,6 +136,9 @@ public class Maze {
                     }
                     if(bazooka==true){ 
                         item = new Bazooka();                         
+                    }
+                    if(cape==true){ 
+                        item = new Cape();                         
                     }
                     if(null!=item){blok.addItem(item);}
                     bloks.add(blok);
@@ -239,7 +233,7 @@ public class Maze {
     }
         return null;
     }
-    public Item movePLayer(int x, int y){
+    public Item movePLayer(int x, int y, boolean hasCape){
         playerX = x;
         playerY = y;
         Item item = null;
@@ -249,7 +243,9 @@ public class Maze {
             if(curBlok.getx()==x&&curBlok.gety()==y){
                 curBlok.setPlayer(true); 
                 curBlok.setPlayerImage(held);
+                if(!hasCape){
                 curBlok.setReturnImage(pad);
+                }
                 if(curBlok.hasItem()){
                     item = curBlok.getItem();
                     curBlok.useItem();
@@ -290,6 +286,7 @@ public class Maze {
        public void setHelper(int x, int y){helperX = x; helperY = y;}
        public void setBazooka(int x, int y){bazookaX = x; bazookaY = y;}
        public void setEnd(int x, int y){endX = x; endY = y;}
+       public void setCape(int x, int y){capeX = x; capeY = y;}
        public void setGrid(int[][] level){
            grid = level;
            height = grid.length;

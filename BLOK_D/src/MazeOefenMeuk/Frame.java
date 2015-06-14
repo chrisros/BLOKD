@@ -153,7 +153,7 @@ public class Frame extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("BAzooka");
+        jLabel6.setText("Bazooka");
         topPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 110, -1));
 
         bazooka.setBackground(new java.awt.Color(255, 255, 255));
