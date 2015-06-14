@@ -245,12 +245,10 @@ public class Frame extends javax.swing.JFrame {
         score.setText(text);
     }
 
-    public void setBazooka(boolean hasBazooka){
-        if(hasBazooka){
-            bazooka.setText("1");
-        } else{
-            bazooka.setText("0"); 
-        }
+    public void setBazooka(int bullets){
+        
+            bazooka.setText(Integer.toString(bullets));
+
     }
 
 }

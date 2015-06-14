@@ -28,7 +28,7 @@ public class Held{
     private BufferedImage heldR;
     private BufferedImage held;
     private BufferedImage pad;
-    private boolean hasBazooka = false;
+    private int bullets = 0;
     private boolean hasCape = false;
     
     public Held(int x, int y, Maze doolhof)
@@ -137,7 +137,6 @@ public class Held{
     
     public void verkrijgSnelsteRoute() throws IOException
     {
-        //doolhof.setSolution(true);
         int i = 1;
         Maze doolhof2 = doolhof;
         Solver solver = new Solver(doolhof2, i);
@@ -157,23 +156,22 @@ public class Held{
                 opgelost=opgelost2;
             }
         }
-        //doolhof.setGrid(doolhof2.getGrid());
-        //doolhof.setBlock(x, y, 1);
+
         doolhof.paintSolution(opgelost);
         scoreBoard.cheatPenalty();
         doolhof.repaint();
     }
     
     public void fire(){
-        if(hasBazooka){
+        if(bullets>0){
             Block destructBlock = doolhof.getFirstDestructableBlock(x, y, direction);
             if(null!=destructBlock){
                 destructBlock.setReturnImage(pad);
                 destructBlock.setWalkable(true);
                 destructBlock.setDestructable(false);
                 panel.repaint();
-                hasBazooka = false;
-                scoreBoard.bazooka(hasBazooka);
+                bullets--;
+                scoreBoard.bazooka(bullets);
             }else{
         }
             
@@ -191,6 +189,6 @@ public class Held{
     public int getX(){return x;}
     public int getY(){return y;}
     public void setPanel(JPanel p){panel = p;}
-    public void giveBazooka(){hasBazooka = true; scoreBoard.bazooka(hasBazooka);}
+    public void setBullets(int shots){bullets = shots; scoreBoard.bazooka(shots);}
     public void giveCape(){hasCape = true;}
 }

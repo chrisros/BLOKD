@@ -47,8 +47,8 @@ public class ScoreBoard{
         score = newscore;
         updateScore();
     }
-    public void bazooka(boolean bazooka){
-        frame.setBazooka(bazooka);
+    public void bazooka(int shots){
+        frame.setBazooka(shots);
     }
     public int getScore(){
         return score;

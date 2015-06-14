@@ -90,7 +90,7 @@ public class GetKey implements KeyListener
             }
             if(bazookaCheatCode())
             {
-                speler.giveBazooka();
+                speler.setBullets(5);
             }
         } catch (IOException ex) {
             Logger.getLogger(GetKey.class.getName()).log(Level.SEVERE, null, ex);
