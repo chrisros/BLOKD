@@ -196,9 +196,12 @@ public class EndScreen extends javax.swing.JFrame {
     
     private void insertScore(){
         String naam =text.getText();
-        int steps = 100;
-        int score = Score; 
-        ScoreInserter insert = new ScoreInserter(naam, steps, score);
+        if(naam.length()>2){
+            int steps = 100;
+            int score = Score; 
+            ScoreboardConnection insert = new ScoreboardConnection();
+            insert.ScoreInserter(naam, steps, score);  
+        }
     }
 
 
