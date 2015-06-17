@@ -20,6 +20,7 @@ public class Spel {
     int blockSize = 40;     //grootte van elke block ven het grid
     int currentLevel = 0;
     int totalScore = 0;
+    int totalSteps = 0;
     protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                              {0,2,1,1,1,0,1,0,0,1,1,0,1,0},
                              {0,0,1,0,1,0,1,1,1,1,1,1,1,0},       
@@ -72,7 +73,7 @@ public class Spel {
             constructLevel();
         } else{
             frame.dispose();  
-            EndScreen endscreen = new EndScreen(totalScore);
+            EndScreen endscreen = new EndScreen(totalScore, totalSteps);
             endscreen.setVisible(true);
                     
             
@@ -81,7 +82,8 @@ public class Spel {
     }
     
     public void finish() throws IOException{
-        totalScore += scoreboard.getScore();      
+        totalScore += scoreboard.getScore(); 
+        totalSteps += speler.getSteps();  
         currentLevel++;
         start();
     }

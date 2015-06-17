@@ -6,6 +6,7 @@
 
 package MazeOefenMeuk;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -43,7 +44,8 @@ public class Frame extends javax.swing.JFrame {
         panel.setFocusable(true);
         KeyListener checkKey = new GetKey(speler);
         panel.addKeyListener(checkKey);
-        
+        Dimension minSize = new Dimension(580,  1);
+        topPanel.setMinimumSize(minSize);
         doolhof.setPanel(panel);
         
     }
@@ -81,7 +83,7 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
-        panel.setBackground(new java.awt.Color(248, 179, 50));
+        panel.setBackground(new java.awt.Color(100, 85, 67));
         panel.setForeground(new java.awt.Color(255, 255, 255));
         panel.setFocusCycleRoot(true);
         panel.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -121,47 +123,47 @@ public class Frame extends javax.swing.JFrame {
         topPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("P22 Constructivist", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Score: ");
-        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 20));
+        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         score.setBackground(new java.awt.Color(255, 255, 255));
-        score.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        score.setFont(new java.awt.Font("P22 Constructivist", 0, 16)); // NOI18N
         score.setForeground(new java.awt.Color(255, 255, 255));
         score.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         score.setText("0000");
         score.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        topPanel.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 80, -1));
+        topPanel.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 80, -1));
 
         level.setBackground(new java.awt.Color(255, 255, 255));
-        level.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        level.setFont(new java.awt.Font("P22 Constructivist", 0, 16)); // NOI18N
         level.setForeground(new java.awt.Color(255, 255, 255));
         level.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         level.setText("0001");
-        topPanel.add(level, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, 20));
+        topPanel.add(level, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, 20));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("P22 Constructivist", 0, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Level: ");
-        topPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 90, -1));
+        jLabel5.setText("- Level: ");
+        topPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 90, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("P22 Constructivist", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Bazooka");
-        topPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 110, -1));
+        jLabel6.setText("- Bazooka:");
+        topPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 120, -1));
 
         bazooka.setBackground(new java.awt.Color(255, 255, 255));
-        bazooka.setFont(new java.awt.Font("P22 Constructivist", 0, 18)); // NOI18N
+        bazooka.setFont(new java.awt.Font("P22 Constructivist", 0, 16)); // NOI18N
         bazooka.setForeground(new java.awt.Color(255, 255, 255));
         bazooka.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         bazooka.setText("0");
-        topPanel.add(bazooka, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 20, -1));
+        topPanel.add(bazooka, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 20, -1));
 
         getContentPane().add(topPanel, java.awt.BorderLayout.PAGE_START);
 

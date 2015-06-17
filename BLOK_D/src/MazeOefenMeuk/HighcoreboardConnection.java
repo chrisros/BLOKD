@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Aaik
  */
-    public class ScoreboardConnection {
+    public class HighcoreboardConnection {
 
 
     public void ScoreInserter(String naam, int stappen, int score) {

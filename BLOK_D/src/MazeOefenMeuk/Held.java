@@ -84,7 +84,7 @@ public class Held{
                 }
                 break;
         }
-        doMove();
+        parseMovement();
     }
     
     private boolean isBlockAccesible(){
@@ -121,7 +121,7 @@ public class Held{
              }
        }
     
-    private void doMove() throws IOException{
+    private void parseMovement() throws IOException{
         
            steps++;
            doolhof.setHeld(held);
@@ -191,4 +191,5 @@ public class Held{
     public void setPanel(JPanel p){panel = p;}
     public void setBullets(int shots){bullets = shots; scoreBoard.bazooka(shots);}
     public void giveCape(){hasCape = true;}
+    public int getSteps(){return steps;}
 }
