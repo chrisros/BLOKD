@@ -103,5 +103,21 @@ public class HeldTest {
         System.out.println("Test geslaagd, niet bewogen DOWN");
     }
 
+    private boolean isAtEnd() {
+        return x == 4 && y == 4;
+    }
+
+    @Test
+    public void parseMovementTest() throws IOException {
+        Item items = null;
+        if (items != null) {
+            items.use(null);
+        }
+        
+        if (isAtEnd()) {
+            System.out.println("is het einde");
+        }
+
+    }
   
 }
