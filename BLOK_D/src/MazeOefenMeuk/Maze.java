@@ -47,7 +47,11 @@ public class Maze {
     protected int capeX, capeY;
     protected int playerX, playerY;
     protected boolean solution = false;
-    protected int[][] grid ;
+    protected int[][] grid = {  {0, 0, 0, 0, 0},
+                                {0, 1, 1, 1, 0},
+                                {0, 1, 1, 1, 0},
+                                {0, 1, 1, 1, 0},
+                                {0, 0, 0, 0, 0}};
     ArrayList<Block> bloks;
     
    public Maze(int x, int y){
@@ -142,14 +146,12 @@ public class Maze {
                     }
                     if(null!=item){blok.addItem(item);}
                     bloks.add(blok);
+                    System.out.println(blok);
                 } catch (Exception e) {}  
                 }
                     
         }
-        panel.setBackground(Color.BLACK);
-        panel.setFocusable(true);
-        panel.requestFocusInWindow();
-        repaint();        
+      
     } 
     
     public void paintSolution(Maze opgelost){
@@ -179,6 +181,8 @@ public class Maze {
             panel.add(curBlok); 
         }
         panel.updateUI();
+        panel.setFocusable(true);
+        panel.requestFocusInWindow();
     } 
     
     //bekijkt of een object op een bepaal dcoordinaat (x, y) walkable is
@@ -196,8 +200,9 @@ public class Maze {
     }
     
     public Block getFirstDestructableBlock(int x, int y, KEYVALUE direction){
-        
+            
             Block curBlok = getBlock(x, y);
+            
             if(curBlok.getDestructable()){
                     return curBlok;                           
             }else if(curBlok.isEdge()){

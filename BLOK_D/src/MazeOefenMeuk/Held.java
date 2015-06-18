@@ -90,8 +90,10 @@ public class Held{
     private boolean isBlockAccesible(){
         boolean walkable = doolhof.isBlockWalkable(x, y);
         boolean destructable = false;
+        
         if(doolhof.getFirstDestructableBlock(x, y, direction)!=null){destructable = true;}
-        if(hasCape&&(walkable||destructable)){
+        System.out.println("test2");
+        if(hasCape&&destructable){
             return true;
         }else{
             return walkable;

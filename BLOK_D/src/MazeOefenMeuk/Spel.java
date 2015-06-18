@@ -21,14 +21,11 @@ public class Spel {
     int currentLevel = 0;
     int totalScore = 0;
     int totalSteps = 0;
-    protected int[][] grid ={{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                             {0,2,1,1,1,0,1,0,0,1,1,0,1,0},
-                             {0,0,1,0,1,0,1,1,1,1,1,1,1,0},       
-                             {0,0,0,1,1,1,1,0,0,1,0,1,1,0},      
-                             {0,1,0,1,1,0,0,0,0,1,1,0,1,0},
-                             {0,1,0,0,1,0,1,0,0,1,0,0,1,0},
-                             {0,1,1,1,1,1,1,0,0,1,1,1,4,0}, 
-                             {0,0,0,0,0,0,0,0,0,0,0,0,0,0}};  
+    protected int[][] grid = {  {0, 0, 0, 0, 0},
+                                {0, 1, 1, 1, 0},
+                                {0, 1, 1, 1, 0},
+                                {0, 1, 1, 1, 0},
+                                {0, 0, 0, 0, 0}}; 
     int steps;
     Frame frame;
     Maze doolhof;
@@ -58,6 +55,7 @@ public class Spel {
             frame.setSize(doolhof.getWidth() * blockSize, (doolhof.getHeight() * blockSize) + 90);
             frame.setPanelGrid(doolhof.getWidth(), doolhof.getHeight());   
             doolhof.createMaze();
+            doolhof.repaint();  
             scoreboard = new ScoreBoard(frame, 1000);
             speler.setScoreBoard(scoreboard);
         
