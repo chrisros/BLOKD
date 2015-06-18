@@ -21,12 +21,7 @@ public class Spel {
     int currentLevel = 0;
     int totalScore = 0;
     int totalSteps = 0;
-    protected int[][] grid = {  {0, 0, 0, 0, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 0, 0, 0, 0}}; 
-    int steps;
+    protected int[][] grid;
     Frame frame;
     Maze doolhof;
     Held speler;

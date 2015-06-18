@@ -27,8 +27,8 @@ public class HeldTest {
      * Test of move method, of class Held.
      */
     private Maze doolhof;
-    int x;
-    int y;
+    int x = 1;
+    int y = 1;
     protected int[][] grid = {  {0, 0, 0, 0, 0},
                                 {0, 1, 1, 1, 0},
                                 {0, 1, 1, 1, 0},
@@ -49,7 +49,8 @@ public class HeldTest {
     @Before
     public void setUp() throws IOException {
 
-        doolhof = new Maze(1, 1);
+        doolhof = new Maze(x, y);
+        doolhof.setGrid(grid);
         doolhof.createMaze();
         //doolhof.createMaze();
     }
@@ -60,7 +61,7 @@ public class HeldTest {
 
     @Test
     public void testMove1() throws IOException {
-        x = 1;
+        x = 3;
         y = 1;
         Held instance = new Held(x, y, doolhof);
         instance.move(KEYVALUE.LEFT);
@@ -70,7 +71,7 @@ public class HeldTest {
         int resultY = instance.getY();
         assertEquals(expResultX, resultX);
         assertEquals(expResultY, resultY);
-        System.out.println("Test geslaagd, niet bewogen DOWN");
+        System.out.println("Test geslaagd, bewogen LEFT");
     }
         @Test
     public void testMove2() throws IOException {
@@ -85,7 +86,7 @@ public class HeldTest {
         int resultY = instance.getY();
         assertEquals(expResultX, resultX);
         assertEquals(expResultY, resultY);
-        System.out.println("Test geslaagd, niet bewogen DOWN");
+        System.out.println("Test geslaagd, bewogen DOWN");
     }
         @Test
     public void testMove3() throws IOException {
@@ -100,24 +101,24 @@ public class HeldTest {
         int resultY = instance.getY();
         assertEquals(expResultX, resultX);
         assertEquals(expResultY, resultY);
-        System.out.println("Test geslaagd, niet bewogen DOWN");
+        System.out.println("Test geslaagd, niet bewogen LEFT");
     }
 
-    private boolean isAtEnd() {
-        return x == 4 && y == 4;
-    }
-
-    @Test
-    public void parseMovementTest() throws IOException {
-        Item items = null;
-        if (items != null) {
-            items.use(null);
-        }
-        
-        if (isAtEnd()) {
-            System.out.println("is het einde");
-        }
-
-    }
-  
+//    private boolean isAtEnd() {
+//        return x == 4 && y == 4;
+//    }
+//
+//    @Test
+//    public void parseMovementTest() throws IOException {
+//        Item items = null;
+//        if (items != null) {
+//            items.use(null);
+//        }
+//        
+//        if (isAtEnd()) {
+//            System.out.println("is het einde");
+//        }
+//
+//    }
+//  
 }

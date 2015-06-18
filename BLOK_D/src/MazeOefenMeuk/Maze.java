@@ -47,11 +47,7 @@ public class Maze {
     protected int capeX, capeY;
     protected int playerX, playerY;
     protected boolean solution = false;
-    protected int[][] grid = {  {0, 0, 0, 0, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 0, 0, 0, 0}};
+    protected int[][] grid;
     ArrayList<Block> bloks;
     
    public Maze(int x, int y){
@@ -146,7 +142,6 @@ public class Maze {
                     }
                     if(null!=item){blok.addItem(item);}
                     bloks.add(blok);
-                    System.out.println(blok);
                 } catch (Exception e) {}  
                 }
                     
@@ -172,7 +167,7 @@ public class Maze {
     
     //tekent de objecten uit de arraylist opnieuw op het panel
     public void repaint(){
-        
+        try {
         panel.removeAll();   
         
         Iterator<Block> iter = bloks.iterator();
@@ -183,6 +178,9 @@ public class Maze {
         panel.updateUI();
         panel.setFocusable(true);
         panel.requestFocusInWindow();
+        } catch (Exception e) {
+        }
+
     } 
     
     //bekijkt of een object op een bepaal dcoordinaat (x, y) walkable is
@@ -276,8 +274,6 @@ public class Maze {
    public int[][] getGrid(){return grid;}
    public void setHeld(BufferedImage Held){held = Held;}
    public void setBlock(int x, int y, int value){grid[y][x]=value;} 
-   public int getStartX(){return startX;}
-   public int getStartY(){return startY;}
    public int getEndX(){return endX;}
    public int getEndY(){return endY;}
    public int getWidth(){return grid[0].length  ;}

@@ -92,7 +92,6 @@ public class Held{
         boolean destructable = false;
         
         if(doolhof.getFirstDestructableBlock(x, y, direction)!=null){destructable = true;}
-        System.out.println("test2");
         if(hasCape&&destructable){
             return true;
         }else{
@@ -129,8 +128,10 @@ public class Held{
            doolhof.setHeld(held);
            Item item = doolhof.movePLayer(x, y, hasCape);
            if (item!=null){item.use(this);}
-           doolhof.repaint();
+           try {
+                       doolhof.repaint();
            scoreBoard.movePenalty();
+            } catch (Exception e) {}
            if(isAtEnd())
            {
                 doolhof.finishGame();  
