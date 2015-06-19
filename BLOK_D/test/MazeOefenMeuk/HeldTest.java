@@ -178,4 +178,28 @@ public class HeldTest {
 
         System.out.println("Test geslaagd parseMovement, Not end level - met Cape");
     }
+    
+     @Test
+    public void testparseMove4() throws IOException {
+
+        x = 3;
+        y = 2;
+        int endX = 2;
+        int endY = 2;
+
+        Held instance = new Held(x, y, doolhof);
+
+        instance.parseMovement();
+        instance.setCape(false);
+        doolhof.setEnd(endX, endY);
+
+        boolean expResultCape = false;
+        boolean expResultEnd = false;
+        boolean resultCape = instance.getCape();
+        boolean resultEnd = instance.isAtEnd();
+        assertEquals(expResultCape, resultCape);
+        assertEquals(expResultEnd, resultEnd);
+
+        System.out.println("Test geslaagd parseMovement, Not end level - not Cape");
+    }
 }
