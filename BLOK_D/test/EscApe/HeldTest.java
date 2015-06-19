@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MazeOefenMeuk;
+package EscApe;
 
+import EscApe.Frame;
+import EscApe.KEYVALUE;
+import EscApe.Held;
+import EscApe.Maze;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 

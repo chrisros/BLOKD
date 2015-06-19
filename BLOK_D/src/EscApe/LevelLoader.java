@@ -1,6 +1,6 @@
 //haalt de levels uit een txt files en parsed ze naar 'Spel'
 //IN DEV
-package MazeOefenMeuk;
+package EscApe;
 
 import java.io.File;
 import java.io.FileNotFoundException;

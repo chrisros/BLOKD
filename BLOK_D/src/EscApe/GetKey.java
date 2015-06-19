@@ -2,7 +2,7 @@
  *verantwoordelijk voor het ophalken van toetsaanslagen, en deze doorgeven aan de held 
  */
 
-package MazeOefenMeuk;
+package EscApe;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

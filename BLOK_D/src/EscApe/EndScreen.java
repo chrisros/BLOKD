@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package MazeOefenMeuk;
+package EscApe;
 
 import java.awt.Image;
 import java.io.File;

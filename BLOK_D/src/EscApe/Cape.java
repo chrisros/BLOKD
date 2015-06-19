@@ -4,32 +4,27 @@
  * and open the template in the editor.
  */
 
-package MazeOefenMeuk;
+package EscApe;
 
 import java.io.File;
-import java.util.Random;
 import javax.imageio.ImageIO;
 
 /**
  *
- * @author Chris
+ * @author chris
  */
-public class Bazooka extends Item{
+public class Cape extends Item{
 
-    public Bazooka(){
+    public Cape(){
         try {
-            image       = ImageIO.read(new File("src/images/bomb.PNG")); 
+            image       = ImageIO.read(new File("src/images/cape.PNG")); 
         } catch (Exception e) {
         }
     }
     
     @Override
     public void use(Held speler) {
-        Random rn = new Random();
-        int maxShots = 5;
-        int minShots = 1;
-        int shots = rn.nextInt(maxShots-minShots+1)+minShots;
-        speler.setBullets(shots);
+        speler.giveCape();
     }
     
 }

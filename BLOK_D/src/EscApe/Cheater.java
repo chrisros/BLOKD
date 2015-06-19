@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package MazeOefenMeuk;
+package EscApe;
 
 import java.io.File;
 import java.util.Random;

@@ -1,7 +1,7 @@
 /*
  * Maakt de levels van het spel
  */
-package MazeOefenMeuk;
+package EscApe;
 
 import java.io.IOException;
 

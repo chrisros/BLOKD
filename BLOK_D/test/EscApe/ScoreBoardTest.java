@@ -3,8 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MazeOefenMeuk;
+package EscApe;
 
+import EscApe.Frame;
+import EscApe.Held;
+import EscApe.ScoreBoard;
+import EscApe.Spel;
+import EscApe.MazeSolved;
+import EscApe.Maze;
+import EscApe.Solver;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;

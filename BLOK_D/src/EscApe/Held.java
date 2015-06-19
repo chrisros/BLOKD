@@ -1,7 +1,7 @@
 /*
  * een representatie van de held (super aap)
  */
-package MazeOefenMeuk;
+package EscApe;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package MazeOefenMeuk;
+package EscApe;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -50,7 +50,6 @@ public class StartScreen extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 500));
 
         jPanel1.setBackground(new java.awt.Color(51, 33, 22));
         jPanel1.setForeground(new java.awt.Color(51, 33, 22));
