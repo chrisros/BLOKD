@@ -5,6 +5,7 @@
  */
 package MazeOefenMeuk;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import org.junit.After;
@@ -23,23 +24,22 @@ public class HeldTest {
     public HeldTest() {
     }
 
-     /**
+    /**
      * Test of move method, of class Held.
      */
     private Maze doolhof;
     int x = 1;
     int y = 1;
-    protected int[][] grid = {  {0, 0, 0, 0, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 0, 0, 0, 0}};
+    protected int[][] grid = {{0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {0, 1, 1, 1, 0},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0}};
     Frame frame;
-
 
     @BeforeClass
     public static void setUpClass() {
-        
+
     }
 
     @AfterClass
@@ -71,11 +71,12 @@ public class HeldTest {
         int resultY = instance.getY();
         assertEquals(expResultX, resultX);
         assertEquals(expResultY, resultY);
-        System.out.println("Test geslaagd, bewogen LEFT");
+        System.out.println("Test geslaagd move, bewogen LEFT");
     }
-        @Test
+
+    @Test
     public void testMove2() throws IOException {
-        
+
         x = 3;
         y = 2;
         Held instance = new Held(x, y, doolhof);
@@ -86,11 +87,12 @@ public class HeldTest {
         int resultY = instance.getY();
         assertEquals(expResultX, resultX);
         assertEquals(expResultY, resultY);
-        System.out.println("Test geslaagd, bewogen DOWN");
+        System.out.println("Test geslaagd move, bewogen DOWN");
     }
-        @Test
+
+    @Test
     public void testMove3() throws IOException {
-        
+
         x = 1;
         y = 2;
         Held instance = new Held(x, y, doolhof);
@@ -101,24 +103,79 @@ public class HeldTest {
         int resultY = instance.getY();
         assertEquals(expResultX, resultX);
         assertEquals(expResultY, resultY);
-        System.out.println("Test geslaagd, niet bewogen LEFT");
+        System.out.println("Test geslaagd move, niet bewogen LEFT");
     }
 
-//    private boolean isAtEnd() {
-//        return x == 4 && y == 4;
-//    }
-//
-//    @Test
-//    public void parseMovementTest() throws IOException {
-//        Item items = null;
-//        if (items != null) {
-//            items.use(null);
-//        }
-//        
-//        if (isAtEnd()) {
-//            System.out.println("is het einde");
-//        }
-//
-//    }
-//  
+
+    @Test
+    public void testparseMove1() throws IOException {
+
+        x = 2;
+        y = 2;
+        int endX = 2;
+        int endY = 2;
+
+        Held instance = new Held(x, y, doolhof);
+
+        instance.parseMovement();
+        instance.setCape(true);
+        doolhof.setEnd(endX, endY);
+
+        boolean expResultCape = true;
+        boolean expResultEnd = true;
+        boolean resultCape = instance.getCape();
+        boolean resultEnd = instance.isAtEnd();
+        assertEquals(expResultCape, resultCape);
+        assertEquals(expResultEnd, resultEnd);
+
+        System.out.println("Test geslaagd parseMovement, End level - met Cape");
+    }
+    
+    @Test
+    public void testparseMove2() throws IOException {
+
+        x = 2;
+        y = 2;
+        int endX = 2;
+        int endY = 2;
+
+        Held instance = new Held(x, y, doolhof);
+
+        instance.parseMovement();
+        instance.setCape(false);
+        doolhof.setEnd(endX, endY);
+
+        boolean expResultCape = false;
+        boolean expResultEnd = true;
+        boolean resultCape = instance.getCape();
+        boolean resultEnd = instance.isAtEnd();
+        assertEquals(expResultCape, resultCape);
+        assertEquals(expResultEnd, resultEnd);
+
+        System.out.println("Test geslaagd parseMovement, End level - zonder Cape");
+    }
+    
+    @Test
+    public void testparseMove3() throws IOException {
+
+        x = 3;
+        y = 2;
+        int endX = 2;
+        int endY = 2;
+
+        Held instance = new Held(x, y, doolhof);
+
+        instance.parseMovement();
+        instance.setCape(true);
+        doolhof.setEnd(endX, endY);
+
+        boolean expResultCape = true;
+        boolean expResultEnd = false;
+        boolean resultCape = instance.getCape();
+        boolean resultEnd = instance.isAtEnd();
+        assertEquals(expResultCape, resultCape);
+        assertEquals(expResultEnd, resultEnd);
+
+        System.out.println("Test geslaagd parseMovement, Not end level - met Cape");
+    }
 }

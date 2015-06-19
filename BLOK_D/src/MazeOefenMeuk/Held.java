@@ -1,7 +1,6 @@
 /*
  * een representatie van de held (super aap)
  */
-
 package MazeOefenMeuk;
 
 import java.awt.image.BufferedImage;
@@ -10,11 +9,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-
 /**
  * @author Chris
  */
-public class Held{
+public class Held {
+
     private int x;
     private int y;
     private Maze doolhof;
@@ -29,134 +28,131 @@ public class Held{
     private BufferedImage held;
     private BufferedImage pad;
     private int bullets = 0;
-    private boolean hasCape = false;
-    
-    public Held(int x, int y, Maze doolhof)
-    {
+    private boolean hasCape; // false
+
+    public Held(int x, int y, Maze doolhof) {
         this.x = x;
         this.y = y;
         this.doolhof = doolhof;
-        try{
-            pad       = ImageIO.read(new File("src/images/pad.PNG"));
-            heldB       = ImageIO.read(new File("src/images/heldBottom.PNG")); 
-            heldL       = ImageIO.read(new File("src/images/heldLeft.PNG")); 
-            heldR       = ImageIO.read(new File("src/images/heldRight.PNG")); 
-            heldT       = ImageIO.read(new File("src/images/heldTop.PNG")); 
+        try {
+            pad = ImageIO.read(new File("src/images/pad.PNG"));
+            heldB = ImageIO.read(new File("src/images/heldBottom.PNG"));
+            heldL = ImageIO.read(new File("src/images/heldLeft.PNG"));
+            heldR = ImageIO.read(new File("src/images/heldRight.PNG"));
+            heldT = ImageIO.read(new File("src/images/heldTop.PNG"));
             held = heldR;
             direction = KEYVALUE.RIGHT;
-        } catch(IOException ex){}
+        } catch (IOException ex) {
+        }
     }
-    
-    public void move(KEYVALUE key) throws IOException
-    {
-        
-        switch(key)
-        {
+
+    public void move(KEYVALUE key) throws IOException {
+
+        switch (key) {
             case LEFT:
-                x--; 
+                x--;
                 rotate(KEYVALUE.LEFT);
-                if(!isBlockAccesible()){
+                if (!isBlockAccesible()) {
                     x++;
                 }
-                
+
                 break;
             case RIGHT:
-                x++; 
+                x++;
                 rotate(KEYVALUE.RIGHT);
-                if(!isBlockAccesible()){
-                   x--; 
+                if (!isBlockAccesible()) {
+                    x--;
                 }
-                
+
                 break;
             case UP:
-                y--; 
+                y--;
                 rotate(KEYVALUE.UP);
-                if(!isBlockAccesible()){                    
+                if (!isBlockAccesible()) {
                     y++;
                 }
-                
+
                 break;
             case DOWN:
-                y++; 
+                y++;
                 rotate(KEYVALUE.DOWN);
-                if(!isBlockAccesible()){
-                    y--;               
+                if (!isBlockAccesible()) {
+                    y--;
                 }
                 break;
         }
         parseMovement();
     }
-    
-    private boolean isBlockAccesible(){
+
+    private boolean isBlockAccesible() {
         boolean walkable = doolhof.isBlockWalkable(x, y);
         boolean destructable = false;
-        
-        if(doolhof.getFirstDestructableBlock(x, y, direction)!=null){destructable = true;}
-        if(hasCape&&destructable){
+
+        if (doolhof.getFirstDestructableBlock(x, y, direction) != null) {
+            destructable = true;
+        }
+        if (hasCape && destructable) {
             return true;
-        }else{
+        } else {
             return walkable;
         }
     }
-    
-           public void rotate(KEYVALUE key) 
-       {
-            switch(key)
-             {
-                 case LEFT:
-                    held = heldL;
-                    direction = KEYVALUE.LEFT;
-                    break;
-                 case RIGHT:
-                    held = heldR;
-                    direction = KEYVALUE.RIGHT;
-                    break;
-                 case UP:
-                    held = heldT;
-                    direction = KEYVALUE.UP;
-                     break;
-                 case DOWN:
-                    held = heldB;
-                    direction = KEYVALUE.DOWN;
-                    break;
-             }
-       }
-    
-    private void parseMovement() throws IOException{
-        
-           steps++;
-           doolhof.setHeld(held);
-           Item item = doolhof.movePLayer(x, y, hasCape);
-           if (item!=null){item.use(this);}
-           try {
-                       doolhof.repaint();
-           scoreBoard.movePenalty();
-            } catch (Exception e) {}
-           if(isAtEnd())
-           {
-                doolhof.finishGame();  
-           }
+
+    public void rotate(KEYVALUE key) {
+        switch (key) {
+            case LEFT:
+                held = heldL;
+                direction = KEYVALUE.LEFT;
+                break;
+            case RIGHT:
+                held = heldR;
+                direction = KEYVALUE.RIGHT;
+                break;
+            case UP:
+                held = heldT;
+                direction = KEYVALUE.UP;
+                break;
+            case DOWN:
+                held = heldB;
+                direction = KEYVALUE.DOWN;
+                break;
         }
-    
-    public void verkrijgSnelsteRoute() throws IOException
-    {
+    }
+
+    public void parseMovement() throws IOException {
+
+        steps++;
+        doolhof.setHeld(held);
+        Item item = doolhof.movePLayer(x, y, hasCape);
+        if (item != null) {
+            item.use(this);
+        }
+        try {
+            doolhof.repaint();
+            scoreBoard.movePenalty();
+        } catch (Exception e) {}
+        if (isAtEnd()) {
+            try { doolhof.finishGame();} 
+            catch (Exception e) {};
+        }
+    }
+
+    public void verkrijgSnelsteRoute() throws IOException {
         int i = 1;
         Maze doolhof2 = doolhof;
         Solver solver = new Solver(doolhof2, i);
         MazeSolved opgelost = solver.start();
-        
+
         steps = opgelost.getSteps();
-        while (i<4)
-        {
+        while (i < 4) {
             i++;
             Solver solver2 = new Solver(doolhof2, i);
             MazeSolved opgelost2 = solver2.start();
             int curSteps = opgelost2.getSteps();
 
-            if(curSteps<steps&&curSteps>0)
-            {
+            if (curSteps < steps && curSteps > 0) {
                 steps = curSteps;
-                opgelost=opgelost2;
+                opgelost = opgelost2;
             }
         }
 
@@ -164,35 +160,65 @@ public class Held{
         scoreBoard.cheatPenalty();
         doolhof.repaint();
     }
-    
-    public void fire(){
-        if(bullets>0){
+
+    public void fire() {
+        if (bullets > 0) {
             Block destructBlock = doolhof.getFirstDestructableBlock(x, y, direction);
-            if(null!=destructBlock){
+            if (null != destructBlock) {
                 destructBlock.setReturnImage(pad);
                 destructBlock.setWalkable(true);
                 destructBlock.setDestructable(false);
                 panel.repaint();
                 bullets--;
                 scoreBoard.bazooka(bullets);
-            }else{
-        }
-            
+            } else {
+            }
+
         }
     }
-    
-    private boolean isAtEnd(){
-        return x==doolhof.getEndX()&&y==doolhof.getEndY();
+
+    public boolean isAtEnd() {
+        return x == doolhof.getEndX() && y == doolhof.getEndY();
     }
-    public void setScoreBoard(ScoreBoard board){
+
+    public void setScoreBoard(ScoreBoard board) {
         scoreBoard = board;
     }
-    
-    public void cheatScore(int newScore ){scoreBoard.alterScore(newScore);}
-    public int getX(){return x;}
-    public int getY(){return y;}
-    public void setPanel(JPanel p){panel = p;}
-    public void setBullets(int shots){bullets = shots; scoreBoard.bazooka(shots);}
-    public void giveCape(){hasCape = true;}
-    public int getSteps(){return steps;}
+
+    public void cheatScore(int newScore) {
+        scoreBoard.alterScore(newScore);
+    }
+
+    public boolean getCape() {
+        return hasCape;
+    }
+
+    public void setCape(Boolean b) {
+        hasCape = b;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setPanel(JPanel p) {
+        panel = p;
+    }
+
+    public void setBullets(int shots) {
+        bullets = shots;
+        scoreBoard.bazooka(shots);
+    }
+
+    public void giveCape() {
+        hasCape = true;
+    }
+
+    public int getSteps() {
+        return steps;
+    }
 }
