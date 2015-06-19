@@ -130,10 +130,13 @@ public class Held {
         try {
             doolhof.repaint();
             scoreBoard.movePenalty();
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         if (isAtEnd()) {
-            try { doolhof.finishGame();} 
-            catch (Exception e) {};
+            try {
+                doolhof.finishGame();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -168,9 +171,13 @@ public class Held {
                 destructBlock.setReturnImage(pad);
                 destructBlock.setWalkable(true);
                 destructBlock.setDestructable(false);
-                panel.repaint();
                 bullets--;
-                scoreBoard.bazooka(bullets);
+
+                try {
+                    panel.repaint();
+                    scoreBoard.bazooka(bullets);
+                } catch (Exception e) {
+                }
             } else {
             }
 
@@ -211,7 +218,23 @@ public class Held {
 
     public void setBullets(int shots) {
         bullets = shots;
-        scoreBoard.bazooka(shots);
+        try {
+            scoreBoard.bazooka(shots);
+
+        } catch (Exception e) {
+        }
+    }
+
+    public int getBullets() {
+        return bullets;
+    }
+
+    public void setDirection(KEYVALUE dir) {
+        direction = dir;
+    }
+
+    public KEYVALUE getDirection() {
+        return direction;
     }
 
     public void giveCape() {

@@ -30,10 +30,12 @@ public class HeldTest {
     private Maze doolhof;
     int x = 2;
     int y = 2;
-    protected int[][] grid = {{0, 0, 0, 0, 0},
+    protected int[][] grid = 
+    {
+    {0, 0, 0, 0, 0},
     {0, 1, 1, 1, 0},
     {0, 1, 1, 1, 0},
-    {0, 1, 1, 1, 0},
+    {0, 1, 1, 0, 0},
     {0, 0, 0, 0, 0}};
     Frame frame;
 
@@ -80,14 +82,14 @@ public class HeldTest {
         x = 3;
         y = 2;
         Held instance = new Held(x, y, doolhof);
-        instance.move(KEYVALUE.DOWN);
+        instance.move(KEYVALUE.UP);
         int expResultX = 3;
-        int expResultY = 3;
+        int expResultY = 1;
         int resultX = instance.getX();
         int resultY = instance.getY();
         assertEquals(expResultX, resultX);
         assertEquals(expResultY, resultY);
-        System.out.println("Test geslaagd move, bewogen DOWN");
+        System.out.println("Test geslaagd move, bewogen UP");
     }
 
     @Test
@@ -106,10 +108,9 @@ public class HeldTest {
         System.out.println("Test geslaagd move, niet bewogen LEFT");
     }
 
-
     @Test
     public void testparseMove1() throws IOException {
-        
+
         int endX = 2;
         int endY = 2;
 
@@ -128,7 +129,7 @@ public class HeldTest {
 
         System.out.println("Test geslaagd parseMovement, End level - No Cape");
     }
-    
+
     @Test
     public void testparseMove2() throws IOException {
 
@@ -150,7 +151,7 @@ public class HeldTest {
 
         System.out.println("Test geslaagd parseMovement, No End - Cape");
     }
-    
+
     @Test
     public void testparseMove3() throws IOException {
 
@@ -172,8 +173,8 @@ public class HeldTest {
 
         System.out.println("Test geslaagd parseMovement, No End - No Cape");
     }
-    
-     @Test
+
+    @Test
     public void testparseMove4() throws IOException {
 
         int endX = 2;
@@ -193,5 +194,76 @@ public class HeldTest {
         assertEquals(expResultEnd, resultEnd);
 
         System.out.println("Test geslaagd parseMovement, End level - Cape");
+    }
+
+   @Test
+    public void testFire1() {
+        x = 2;
+        y = 3;
+                
+        Held instance = new Held(x, y, doolhof);
+
+        instance.fire();
+        instance.setBullets(0);
+        instance.setDirection(KEYVALUE.UP);
+
+        int expResultBull = 0;
+        int resultBull = instance.getBullets();
+        
+        assertEquals(expResultBull, resultBull);
+        System.out.println("Test geslaagd fire, 0 kogels");
+    }
+    
+    @Test
+    public void testFire2() {
+        x = 1;
+        y = 4;
+                
+        Held instance = new Held(x, y, doolhof);
+
+        instance.fire();
+        instance.setBullets(2);
+        instance.setDirection(KEYVALUE.LEFT);
+
+        int expResultBull = 2;
+        int resultBull = instance.getBullets();
+        
+        assertEquals(expResultBull, resultBull);
+        System.out.println("Test geslaagd fire, 2 kogels over (begonnen met 2)");
+    }
+    @Test
+    public void testFire2_2() {
+        x = 2;
+        y = 4;
+                
+        Held instance = new Held(x, y, doolhof);
+
+        instance.fire();
+        instance.setBullets(2);
+        instance.setDirection(KEYVALUE.LEFT);
+
+        int expResultBull = 2;
+        int resultBull = instance.getBullets();
+        
+        assertEquals(expResultBull, resultBull);
+        System.out.println("Test geslaagd fire, 2 kogels over (begonnen met 2)");
+    }
+    
+    @Test
+    public void testFire3() {
+        x = 3;
+        y = 3;
+                
+        Held instance = new Held(x, y, doolhof);
+
+        instance.setBullets(3);
+        instance.setDirection(KEYVALUE.LEFT);
+        instance.fire();
+
+        int expResultBull = 2;
+        int resultBull = instance.getBullets();
+        
+        assertEquals(expResultBull, resultBull);
+        System.out.println("Test geslaagd fire, 2 kogels over (begonnen met 3)");
     }
 }
